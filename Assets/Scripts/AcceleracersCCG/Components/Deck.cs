@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AcceleracersCCG.Cards;
+using AcceleracersCCG.Infrastructure;
 
 namespace AcceleracersCCG.Components
 {
@@ -25,7 +26,7 @@ namespace AcceleracersCCG.Components
             _cards = new List<CardInstance>(cards);
         }
 
-        public void Shuffle(Random rng)
+        public void Shuffle(IRandomProvider rng)
         {
             for (int i = _cards.Count - 1; i > 0; i--)
             {

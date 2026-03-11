@@ -9,8 +9,6 @@ namespace AcceleracersCCG.Commands.System
     {
         public int RealmIndex { get; }
 
-        private bool _wasRevealed;
-
         public FlipRealmCommand(int realmIndex)
         {
             RealmIndex = realmIndex;
@@ -29,13 +27,12 @@ namespace AcceleracersCCG.Commands.System
 
         public void Execute(GameState state)
         {
-            _wasRevealed = state.RealmTrack.IsRevealed(RealmIndex);
             state.RealmTrack.Reveal(RealmIndex);
         }
 
         public void Undo(GameState state)
         {
-            // Can't un-reveal a realm in practice, but snapshot handles it
+            // Snapshot-based undo via CommandProcessor
         }
     }
 }

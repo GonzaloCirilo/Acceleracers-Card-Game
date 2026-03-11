@@ -2,7 +2,7 @@ using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
 {
-    public class ModCardData : CardData
+    public sealed class ModCardData : CardData
     {
         public override CardType CardType => CardType.Mod;
         public ModabilityIcon ModabilityIcons { get; }

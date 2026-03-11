@@ -2,7 +2,7 @@ using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
 {
-    public class ShiftCardData : CardData
+    public sealed class ShiftCardData : CardData
     {
         public override CardType CardType => CardType.Shift;
 

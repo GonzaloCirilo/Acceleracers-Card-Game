@@ -2,7 +2,7 @@ using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
 {
-    public class HazardCardData : CardData
+    public sealed class HazardCardData : CardData
     {
         public override CardType CardType => CardType.Hazard;
         public SPP SPPDamage { get; }
@@ -13,8 +13,9 @@ namespace AcceleracersCCG.Cards
             bool canTargetAcceleChargers = false,
             bool canTargetVehicles = false,
             SPP spp = default,
+            TerrainIcon terrainIcons = TerrainIcon.None,
             string effectId = null)
-            : base(id, name, apCost: apCost, effectId: effectId, spp: spp)
+            : base(id, name, apCost: apCost, effectId: effectId, spp: spp, terrainIcons: terrainIcons)
         {
             SPPDamage = sppDamage;
             CanTargetAcceleChargers = canTargetAcceleChargers;

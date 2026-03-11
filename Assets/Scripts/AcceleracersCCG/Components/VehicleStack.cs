@@ -65,11 +65,20 @@ namespace AcceleracersCCG.Components
         }
 
         /// <summary>
-        /// Finds an equipped card by unique ID (in mods, shifts, or accelecharger).
+        /// Finds an equipped card by unique ID (mods, shifts, or accelecharger — NOT the vehicle itself).
         /// </summary>
         public CardInstance FindEquipment(int uniqueId)
         {
-            return AllCards().FirstOrDefault(c => c.UniqueId == uniqueId);
+            var mod = EquippedMods.FirstOrDefault(c => c.UniqueId == uniqueId);
+            if (mod != null) return mod;
+
+            var shift = EquippedShifts.FirstOrDefault(c => c.UniqueId == uniqueId);
+            if (shift != null) return shift;
+
+            if (AcceleCharger != null && AcceleCharger.UniqueId == uniqueId)
+                return AcceleCharger;
+
+            return null;
         }
 
         /// <summary>

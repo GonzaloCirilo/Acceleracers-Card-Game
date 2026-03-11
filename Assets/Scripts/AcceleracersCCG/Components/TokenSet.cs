@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AcceleracersCCG.Components
 {
@@ -50,12 +49,6 @@ namespace AcceleracersCCG.Components
         public void Clear() => _tokens.Clear();
 
         public Dictionary<string, int> GetAll() => new Dictionary<string, int>(_tokens);
-
-        /// <summary>
-        /// Returns all tokens that have reached zero or below (for tick processing).
-        /// </summary>
-        public List<string> GetExpired()
-            => _tokens.Where(kv => kv.Value <= 0).Select(kv => kv.Key).ToList();
 
         public TokenSet Clone() => new TokenSet(_tokens);
     }

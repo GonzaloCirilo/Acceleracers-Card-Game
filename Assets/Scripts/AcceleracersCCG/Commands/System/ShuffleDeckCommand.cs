@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 using AcceleracersCCG.Cards;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Infrastructure;
 
 namespace AcceleracersCCG.Commands.System
 {
@@ -31,7 +31,7 @@ namespace AcceleracersCCG.Commands.System
         {
             var deck = state.Players[PlayerIndex].Deck;
             _previousOrder = deck.ToList();
-            deck.Shuffle(new Random(Seed));
+            deck.Shuffle(new SeededRandomProvider(Seed));
         }
 
         public void Undo(GameState state)

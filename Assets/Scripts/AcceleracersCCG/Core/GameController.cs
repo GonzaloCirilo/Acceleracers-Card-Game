@@ -59,6 +59,13 @@ namespace AcceleracersCCG.Core
         public void StartGame(List<CardInstance> deck0, List<CardInstance> deck1,
             CardInstance[] realms)
         {
+            if (deck0 == null || deck0.Count == 0)
+                throw new ArgumentException("Player 0 deck cannot be null or empty.", nameof(deck0));
+            if (deck1 == null || deck1.Count == 0)
+                throw new ArgumentException("Player 1 deck cannot be null or empty.", nameof(deck1));
+            if (realms == null || realms.Length < Constants.RealmsPerRace)
+                throw new ArgumentException($"Must provide at least {Constants.RealmsPerRace} realms.", nameof(realms));
+
             // Set up decks
             State.Players[0].Deck = new Deck(deck0);
             State.Players[1].Deck = new Deck(deck1);

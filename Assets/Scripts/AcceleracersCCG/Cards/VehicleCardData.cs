@@ -2,7 +2,7 @@ using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
 {
-    public class VehicleCardData : CardData
+    public sealed class VehicleCardData : CardData
     {
         public override CardType CardType => CardType.Vehicle;
         public Team Team { get; }

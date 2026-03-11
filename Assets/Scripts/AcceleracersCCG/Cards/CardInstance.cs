@@ -7,7 +7,7 @@ namespace AcceleracersCCG.Cards
     /// Runtime wrapper: a specific copy of a card in play, with a unique identity.
     /// Multiple CardInstances can reference the same CardData.
     /// </summary>
-    public class CardInstance
+    public class CardInstance : IEquatable<CardInstance>
     {
         private static int _nextId = 0;
 
@@ -44,8 +44,11 @@ namespace AcceleracersCCG.Cards
 
         public override string ToString() => $"[{UniqueId}] {Data.Name}";
 
+        public bool Equals(CardInstance other)
+            => other != null && UniqueId == other.UniqueId;
+
         public override bool Equals(object obj)
-            => obj is CardInstance other && UniqueId == other.UniqueId;
+            => obj is CardInstance other && Equals(other);
 
         public override int GetHashCode() => UniqueId;
     }

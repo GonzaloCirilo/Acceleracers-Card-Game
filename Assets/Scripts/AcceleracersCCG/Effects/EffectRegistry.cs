@@ -32,9 +32,10 @@ namespace AcceleracersCCG.Effects
             if (string.IsNullOrEmpty(effectId))
                 return _effects.GetValueOrDefault("null") ?? new NullEffect();
 
-            return _effects.TryGetValue(effectId, out var effect)
-                ? effect
-                : new NullEffect();
+            if (_effects.TryGetValue(effectId, out var effect))
+                return effect;
+
+            throw new System.ArgumentException($"Unknown effect ID: '{effectId}'. Register it before use.");
         }
 
         public bool Has(string effectId) => _effects.ContainsKey(effectId);

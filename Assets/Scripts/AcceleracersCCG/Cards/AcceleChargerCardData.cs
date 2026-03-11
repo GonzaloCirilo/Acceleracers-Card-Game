@@ -2,7 +2,7 @@ using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
 {
-    public class AcceleChargerCardData : CardData
+    public sealed class AcceleChargerCardData : CardData
     {
         public override CardType CardType => CardType.AcceleCharger;
         public string AcceleronSymbol { get; }

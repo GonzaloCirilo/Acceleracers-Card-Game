@@ -34,7 +34,7 @@ namespace AcceleracersCCG.Serialization
             var props = type.GetProperties();
             foreach (var prop in props)
             {
-                if (prop.CanRead && prop.PropertyType.IsPrimitive || prop.PropertyType == typeof(string))
+                if (prop.CanRead && (prop.PropertyType.IsPrimitive || prop.PropertyType == typeof(string)))
                 {
                     sb.Append($"|{prop.Name}={prop.GetValue(command)}");
                 }

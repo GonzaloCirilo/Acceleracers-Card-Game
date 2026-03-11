@@ -2,7 +2,7 @@ using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
 {
-    public class RacingRealmCardData : CardData
+    public sealed class RacingRealmCardData : CardData
     {
         public override CardType CardType => CardType.RacingRealm;
         public int EscapeValue { get; }
