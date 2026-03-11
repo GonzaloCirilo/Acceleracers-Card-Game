@@ -109,11 +109,16 @@ namespace AcceleracersCCG.Core
         }
 
         /// <summary>
-        /// Undo the last command.
+        /// Undo the last command. Also syncs the phase machine to the restored state.
         /// </summary>
         public ICommand Undo()
         {
-            return CommandProcessor.Undo(State);
+            var command = CommandProcessor.Undo(State);
+            if (command != null)
+            {
+                PhaseMachine.SyncToState(State);
+            }
+            return command;
         }
 
         public bool IsGameOver => State.Result != GameResult.InProgress;

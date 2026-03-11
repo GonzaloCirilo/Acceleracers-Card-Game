@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 
 namespace AcceleracersCCG.Cards
 {
@@ -8,15 +9,23 @@ namespace AcceleracersCCG.Cards
     /// </summary>
     public class CardInstance
     {
-        private static int _nextId = 1;
+        private static int _nextId = 0;
 
         public int UniqueId { get; }
         public CardData Data { get; }
 
+        /// <summary>
+        /// Resets the static ID counter. Call before starting a new game or replay.
+        /// </summary>
+        public static void ResetIdCounter(int startFrom = 1)
+        {
+            _nextId = startFrom - 1;
+        }
+
         public CardInstance(CardData data)
         {
             Data = data ?? throw new ArgumentNullException(nameof(data));
-            UniqueId = _nextId++;
+            UniqueId = Interlocked.Increment(ref _nextId);
         }
 
         /// <summary>

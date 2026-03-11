@@ -1,0 +1,14 @@
+namespace AcceleracersCCG.Effects
+{
+    /// <summary>
+    /// String constants for card effect IDs, used for passive effect checks
+    /// in rules and commands without going through EffectRegistry.
+    /// </summary>
+    public static class EffectIds
+    {
+        public const string HazardImmunity = "hazard_immunity";
+        public const string IgnoreModability = "ignore_modability";
+        public const string PersistOnAdvance = "persist_on_advance";
+        public const string TimedDestruction = "timed_destruction";
+    }
+}

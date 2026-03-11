@@ -1,5 +1,6 @@
 using AcceleracersCCG.Cards;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Effects;
 
 namespace AcceleracersCCG.Rules
 {
@@ -18,6 +19,9 @@ namespace AcceleracersCCG.Rules
             if (vehicle is not VehicleCardData vehicleData)
                 return false;
 
+            if (mod.EffectId == EffectIds.IgnoreModability || vehicle.EffectId == EffectIds.IgnoreModability)
+                return true;
+
             return (modData.ModabilityIcons & vehicleData.ModabilityIcons) != ModabilityIcon.None;
         }
 
@@ -30,6 +34,9 @@ namespace AcceleracersCCG.Rules
                 return "Card is not a Mod.";
             if (vehicle is not VehicleCardData vehicleData)
                 return "Target is not a Vehicle.";
+
+            if (mod.EffectId == EffectIds.IgnoreModability || vehicle.EffectId == EffectIds.IgnoreModability)
+                return null;
 
             if ((modData.ModabilityIcons & vehicleData.ModabilityIcons) == ModabilityIcon.None)
                 return $"Mod modability ({modData.ModabilityIcons}) does not match " +

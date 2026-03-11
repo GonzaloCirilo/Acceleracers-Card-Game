@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AcceleracersCCG.Commands;
+using AcceleracersCCG.Commands.System;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.StateMachine.Phases
@@ -22,14 +23,15 @@ namespace AcceleracersCCG.StateMachine.Phases
 
         public List<ICommand> GetAutoCommands(GameState state)
         {
-            // Reset per-turn flags
-            state.ActivePlayer.HasPlayedVehicleThisTurn = false;
-            state.ActivePlayer.AP = 0;
+            var commands = new List<ICommand>();
+
+            // Reset per-turn flags for the active player
+            commands.Add(new EndTurnResetCommand(state.ActivePlayerIndex));
 
             // Swap active player
-            state.ActivePlayerIndex = 1 - state.ActivePlayerIndex;
+            commands.Add(new SetActivePlayerCommand(1 - state.ActivePlayerIndex));
 
-            return new List<ICommand>();
+            return commands;
         }
 
         public List<ICommand> GetLegalPlayerCommands(GameState state)

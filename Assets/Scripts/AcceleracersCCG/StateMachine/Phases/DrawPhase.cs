@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AcceleracersCCG.Commands;
 using AcceleracersCCG.Commands.Player;
+using AcceleracersCCG.Commands.System;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.StateMachine.Phases
@@ -15,8 +16,6 @@ namespace AcceleracersCCG.StateMachine.Phases
 
         public void OnEnter(GameState state)
         {
-            // Increment turn number at start of draw phase
-            state.TurnNumber++;
         }
 
         public void OnExit(GameState state)
@@ -26,15 +25,20 @@ namespace AcceleracersCCG.StateMachine.Phases
         public List<ICommand> GetAutoCommands(GameState state)
         {
             var commands = new List<ICommand>();
+
+            // Increment turn number at start of draw phase
+            commands.Add(new IncrementTurnCommand());
+
             var activePlayer = state.ActivePlayer;
 
             // Deck-out check
             if (activePlayer.Deck.IsEmpty)
             {
                 // Opponent wins
-                state.Result = state.ActivePlayerIndex == 0
+                var result = state.ActivePlayerIndex == 0
                     ? GameResult.Player1Wins
                     : GameResult.Player0Wins;
+                commands.Add(new SetGameResultCommand(result));
                 return commands;
             }
 

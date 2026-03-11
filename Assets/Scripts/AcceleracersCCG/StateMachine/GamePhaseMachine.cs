@@ -85,6 +85,18 @@ namespace AcceleracersCCG.StateMachine
         }
 
         /// <summary>
+        /// Synchronizes the phase machine's CurrentPhase object to match
+        /// the GameState.CurrentPhase enum (e.g., after an undo restores state).
+        /// </summary>
+        public void SyncToState(GameState state)
+        {
+            if (_phases.TryGetValue(state.CurrentPhase, out var phase))
+            {
+                CurrentPhase = phase;
+            }
+        }
+
+        /// <summary>
         /// Get legal commands for the current interactive phase.
         /// </summary>
         public List<ICommand> GetLegalCommands(GameState state)

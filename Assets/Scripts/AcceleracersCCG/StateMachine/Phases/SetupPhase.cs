@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using AcceleracersCCG.Cards;
 using AcceleracersCCG.Commands;
 using AcceleracersCCG.Commands.Player;
 using AcceleracersCCG.Commands.System;
@@ -38,16 +36,14 @@ namespace AcceleracersCCG.StateMachine.Phases
             var commands = new List<ICommand>();
 
             // Coin flip to determine first player
-            state.ActivePlayerIndex = _rng.Next(2);
+            commands.Add(new SetActivePlayerCommand(_rng.Next(2)));
 
             // Reveal first realm
             commands.Add(new FlipRealmCommand(0));
 
-            // Shuffle both decks and draw initial hands
-            var rng = new Random(_rng.Next(int.MaxValue));
-            state.Players[0].Deck.Shuffle(rng);
-            rng = new Random(_rng.Next(int.MaxValue));
-            state.Players[1].Deck.Shuffle(rng);
+            // Shuffle both decks
+            commands.Add(new ShuffleDeckCommand(0, _rng.Next(int.MaxValue)));
+            commands.Add(new ShuffleDeckCommand(1, _rng.Next(int.MaxValue)));
 
             // Draw initial hands
             for (int i = 0; i < Constants.InitialHandSize; i++)

@@ -20,9 +20,12 @@ namespace AcceleracersCCG.Effects.Implementations
 
             if (context.Trigger == EffectTrigger.OnEquip)
             {
-                // Set countdown token
-                context.SourceStack.Tokens.Set(
-                    $"{TokenKey}_{context.SourceCard.UniqueId}", Turns);
+                // Set countdown token via command
+                commands.Add(new SetTokenCommand(
+                    context.OwnerPlayerIndex,
+                    context.SourceStack.Vehicle.UniqueId,
+                    $"{TokenKey}_{context.SourceCard.UniqueId}",
+                    Turns));
             }
             else if (context.Trigger == EffectTrigger.OnTuneUp)
             {
@@ -30,12 +33,11 @@ namespace AcceleracersCCG.Effects.Implementations
                 var remaining = context.SourceStack.Tokens.Get(tokenKey);
                 if (remaining <= 1)
                 {
-                    // Time's up — junk the card
+                    // Time's up — junk the card (junk handles cleanup)
                     commands.Add(new JunkCardCommand(
                         context.OwnerPlayerIndex,
                         context.SourceStack.Vehicle.UniqueId,
                         context.SourceCard.UniqueId));
-                    context.SourceStack.Tokens.Remove(tokenKey);
                 }
                 else
                 {

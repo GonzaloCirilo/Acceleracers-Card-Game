@@ -98,6 +98,7 @@ namespace AcceleracersCCG.Commands
             target.CurrentPhase = source.CurrentPhase;
             target.TurnNumber = source.TurnNumber;
             target.Result = source.Result;
+            target.Seed = source.Seed;
         }
     }
 }

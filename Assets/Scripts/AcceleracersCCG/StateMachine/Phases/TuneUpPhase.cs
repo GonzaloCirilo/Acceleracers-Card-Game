@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AcceleracersCCG.Commands;
+using AcceleracersCCG.Commands.System;
 using AcceleracersCCG.Core;
 using AcceleracersCCG.Rules;
 
@@ -28,7 +29,8 @@ namespace AcceleracersCCG.StateMachine.Phases
             var player = state.ActivePlayer;
 
             // Calculate AP for the action phase
-            player.AP = ActionPointRules.CalculateAP(player);
+            int ap = ActionPointRules.CalculateAP(player);
+            commands.Add(new SetAPCommand(state.ActivePlayerIndex, ap));
 
             return commands;
         }

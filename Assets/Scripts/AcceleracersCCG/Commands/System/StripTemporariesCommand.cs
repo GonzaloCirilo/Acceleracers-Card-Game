@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using AcceleracersCCG.Cards;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Effects;
 
 namespace AcceleracersCCG.Commands.System
 {
@@ -37,20 +39,25 @@ namespace AcceleracersCCG.Commands.System
             var player = state.GetPlayer(PlayerIndex);
             var stack = player.GetVehicleStack(VehicleUniqueId);
 
-            _strippedShifts = new List<CardInstance>(stack.EquippedShifts);
-            _strippedAcceleCharger = stack.AcceleCharger;
+            _strippedShifts = stack.EquippedShifts
+                .Where(s => s.Data.EffectId != EffectIds.PersistOnAdvance)
+                .ToList();
+            _strippedAcceleCharger = stack.AcceleCharger != null
+                && stack.AcceleCharger.Data.EffectId != EffectIds.PersistOnAdvance
+                ? stack.AcceleCharger
+                : null;
 
-            // Move shifts to junk
+            // Move non-persistent shifts to junk
             foreach (var shift in _strippedShifts)
             {
+                stack.EquippedShifts.Remove(shift);
                 player.JunkPile.Add(shift);
             }
-            stack.EquippedShifts.Clear();
 
-            // Move AcceleCharger to junk
-            if (stack.AcceleCharger != null)
+            // Move AcceleCharger to junk (unless persistent)
+            if (_strippedAcceleCharger != null)
             {
-                player.JunkPile.Add(stack.AcceleCharger);
+                player.JunkPile.Add(_strippedAcceleCharger);
                 stack.AcceleCharger = null;
             }
         }
