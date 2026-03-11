@@ -12,6 +12,12 @@ namespace AcceleracersCCG.Commands
         private readonly CommandHistory _history = new CommandHistory();
         private readonly List<GameState> _snapshots = new List<GameState>();
 
+        /// <summary>
+        /// Maximum number of undo snapshots to retain. 0 = unlimited.
+        /// When exceeded, the oldest snapshot is discarded (no longer undoable).
+        /// </summary>
+        public int MaxUndoDepth { get; set; } = 100;
+
         public CommandHistory History => _history;
 
         /// <summary>
@@ -30,6 +36,7 @@ namespace AcceleracersCCG.Commands
 
             // Save snapshot for undo
             _snapshots.Add(state.DeepClone());
+            TrimSnapshots();
 
             command.Execute(state);
             _history.Add(command);
@@ -44,6 +51,7 @@ namespace AcceleracersCCG.Commands
         public void ExecuteUnchecked(ICommand command, GameState state)
         {
             _snapshots.Add(state.DeepClone());
+            TrimSnapshots();
             command.Execute(state);
             _history.Add(command);
             OnCommandExecuted?.Invoke(command);
@@ -86,6 +94,14 @@ namespace AcceleracersCCG.Commands
                 if (error != null) return error;
             }
             return null;
+        }
+
+        private void TrimSnapshots()
+        {
+            if (MaxUndoDepth > 0 && _snapshots.Count > MaxUndoDepth)
+            {
+                _snapshots.RemoveAt(0);
+            }
         }
 
         private void RestoreState(GameState target, GameState source)

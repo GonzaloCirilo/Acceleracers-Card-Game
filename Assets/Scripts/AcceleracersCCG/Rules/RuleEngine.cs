@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Rules
 {
     /// <summary>
     /// Aggregates rule validators. Used by commands to check legality before executing.
     /// </summary>
-    public class RuleEngine
+    public static class RuleEngine
     {
         /// <summary>
         /// Validates a command by running all provided validation checks.
