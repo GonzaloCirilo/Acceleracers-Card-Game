@@ -9,7 +9,7 @@ namespace AcceleracersCCG.Cards.Data
         public override CardData ToCardData()
         {
             return new ShiftCardData(cardId, cardName, new SPP(speed, power, performance),
-                apCost: apCost, terrainIcons: terrainIcons, effectId: effectId);
+                apCost: apCost, terrainIcons: terrainIcons, effectIds: effectIds);
         }
     }
 }

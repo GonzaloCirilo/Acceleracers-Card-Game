@@ -13,7 +13,7 @@ namespace AcceleracersCCG.Cards.Data
         {
             return new ModCardData(cardId, cardName, new SPP(speed, power, performance),
                 apCost: apCost, modabilityIcons: modabilityIcons,
-                terrainIcons: terrainIcons, effectId: effectId);
+                terrainIcons: terrainIcons, effectIds: effectIds);
         }
     }
 }

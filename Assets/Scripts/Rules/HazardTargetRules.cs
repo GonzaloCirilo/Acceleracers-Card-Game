@@ -19,7 +19,7 @@ namespace AcceleracersCCG.Rules
             if (hazard is not HazardCardData hazardData)
                 return false;
 
-            if (target.Data.EffectId == EffectIds.HazardImmunity)
+            if (target.Data.HasEffect(EffectIds.HazardImmunity))
                 return false;
 
             var targetType = target.Data.CardType;
@@ -74,7 +74,7 @@ namespace AcceleracersCCG.Rules
             if (hazard is not HazardCardData hazardData)
                 return "Card is not a Hazard.";
 
-            if (target.Data.EffectId == EffectIds.HazardImmunity)
+            if (target.Data.HasEffect(EffectIds.HazardImmunity))
                 return "Target is immune to Hazards.";
 
             var targetType = target.Data.CardType;

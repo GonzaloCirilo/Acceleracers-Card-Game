@@ -1,7 +1,10 @@
+using System.Linq;
 using NUnit.Framework;
 using AcceleracersCCG.Cards;
+using AcceleracersCCG.Commands.Player;
 using AcceleracersCCG.Components;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Effects;
 using AcceleracersCCG.Rules;
 
 namespace AcceleracersCCG.Tests
@@ -235,6 +238,112 @@ namespace AcceleracersCCG.Tests
 
             var errors = DeckBuildingRules.Validate(cards);
             Assert.IsNotEmpty(errors);
+        }
+
+        [Test]
+        public void ShiftEquip_InBlockingRealm_Rejected()
+        {
+            var realmTrack = new RealmTrack();
+            var realm = new CardInstance(TestHelpers.MakeRealm("fog", "Fog Realm",
+                escapeValue: 7, escapeCategory: SPPCategory.Performance, terrain: TerrainIcon.Rough,
+                effectIds: new[] { EffectIds.BlockShift }));
+            realmTrack.SetRealm(0, realm);
+            realmTrack.Reveal(0);
+
+            var shift = TestHelpers.MakeShift();
+            var vehicle = new CardInstance(TestHelpers.MakeVehicle());
+            var stack = new VehicleStack(vehicle); // RealmIndex = 0
+
+            var error = EquipRules.ValidateShift(shift, stack, realmTrack);
+            Assert.IsNotNull(error);
+            Assert.That(error, Does.Contain("Shifts cannot be equipped"));
+        }
+
+        [Test]
+        public void ShiftEquip_InNormalRealm_Allowed()
+        {
+            var realmTrack = new RealmTrack();
+            var realm = new CardInstance(TestHelpers.MakeRealm());
+            realmTrack.SetRealm(0, realm);
+            realmTrack.Reveal(0);
+
+            var shift = TestHelpers.MakeShift();
+            var vehicle = new CardInstance(TestHelpers.MakeVehicle());
+            var stack = new VehicleStack(vehicle);
+
+            var error = EquipRules.ValidateShift(shift, stack, realmTrack);
+            Assert.IsNull(error);
+        }
+
+        [Test]
+        public void ModEquip_InBlockingRealm_Rejected()
+        {
+            var realmTrack = new RealmTrack();
+            var realm = new CardInstance(TestHelpers.MakeRealm("blockmod", "Block Mod Realm",
+                effectIds: new[] { EffectIds.BlockMod }));
+            realmTrack.SetRealm(0, realm);
+            realmTrack.Reveal(0);
+
+            var mod = TestHelpers.MakeMod();
+            var vehicle = new CardInstance(TestHelpers.MakeVehicle());
+            var stack = new VehicleStack(vehicle);
+
+            var error = EquipRules.ValidateMod(mod, stack, realmTrack);
+            Assert.IsNotNull(error);
+            Assert.That(error, Does.Contain("Mods cannot be equipped"));
+        }
+
+        [Test]
+        public void MultipleEffects_OnRealm_AllChecked()
+        {
+            var realmTrack = new RealmTrack();
+            var realm = new CardInstance(TestHelpers.MakeRealm("multi", "Multi Block Realm",
+                effectIds: new[] { EffectIds.BlockShift, EffectIds.BlockMod }));
+            realmTrack.SetRealm(0, realm);
+            realmTrack.Reveal(0);
+
+            var vehicle = new CardInstance(TestHelpers.MakeVehicle());
+            var stack = new VehicleStack(vehicle);
+
+            var shiftError = EquipRules.ValidateShift(TestHelpers.MakeShift(), stack, realmTrack);
+            var modError = EquipRules.ValidateMod(TestHelpers.MakeMod(), stack, realmTrack);
+            var acError = EquipRules.ValidateAcceleCharger(TestHelpers.MakeAcceleCharger(), stack, realmTrack);
+
+            Assert.IsNotNull(shiftError);
+            Assert.IsNotNull(modError);
+            Assert.IsNull(acError); // AcceleCharger not blocked
+        }
+
+        [Test]
+        public void ActionPhase_NoShiftCommands_InBlockingRealm()
+        {
+            var state = TestHelpers.CreateTestGameState();
+            // Replace first realm with a block_shift realm
+            var fogRealm = new CardInstance(TestHelpers.MakeRealm("fog", "Fog Realm",
+                escapeValue: 7, escapeCategory: SPPCategory.Performance, terrain: TerrainIcon.Rough,
+                effectIds: new[] { EffectIds.BlockShift }));
+            state.RealmTrack.SetRealm(0, fogRealm);
+            state.RealmTrack.Reveal(0);
+
+            state.CurrentPhase = GamePhaseId.Action;
+            var player = state.Players[0];
+            player.AP = 5;
+
+            // Add a vehicle at realm 0
+            var vehicle = new CardInstance(TestHelpers.MakeVehicle("v1"));
+            var stack = new VehicleStack(vehicle);
+            player.VehiclesInPlay.Add(stack);
+
+            // Add a shift and a mod to hand
+            player.Hand.Add(new CardInstance(TestHelpers.MakeShift("s1")));
+            player.Hand.Add(new CardInstance(TestHelpers.MakeMod("m1")));
+
+            var phase = new AcceleracersCCG.StateMachine.Phases.ActionPhase();
+            var commands = phase.GetLegalPlayerCommands(state);
+
+            // Shift equip should be excluded, mod equip should be present
+            Assert.IsFalse(commands.Any(c => c is EquipShiftCommand));
+            Assert.IsTrue(commands.Any(c => c is EquipModCommand));
         }
     }
 }

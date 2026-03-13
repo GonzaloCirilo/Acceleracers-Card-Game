@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
@@ -10,8 +11,9 @@ namespace AcceleracersCCG.Cards
 
         public RacingRealmCardData(string id, string name,
             int escapeValue, SPPCategory escapeCategory,
-            TerrainIcon terrainIcons = TerrainIcon.None)
-            : base(id, name, terrainIcons: terrainIcons)
+            TerrainIcon terrainIcons = TerrainIcon.None,
+            IEnumerable<string> effectIds = null)
+            : base(id, name, terrainIcons: terrainIcons, effectIds: effectIds)
         {
             EscapeValue = escapeValue;
             EscapeCategory = escapeCategory;

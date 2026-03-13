@@ -17,7 +17,7 @@ namespace AcceleracersCCG.Cards.Data
             return new VehicleCardData(cardId, cardName, new SPP(speed, power, performance),
                 team: team, modabilityIcons: modabilityIcons, terrainIcons: terrainIcons,
                 isAdvancedVehicle: isAdvancedVehicle, baseVehicleName: baseVehicleName,
-                effectId: effectId);
+                effectIds: effectIds);
         }
     }
 }

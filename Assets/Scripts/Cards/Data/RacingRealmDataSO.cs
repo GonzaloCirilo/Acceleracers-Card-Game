@@ -12,7 +12,8 @@ namespace AcceleracersCCG.Cards.Data
 
         public override CardData ToCardData()
         {
-            return new RacingRealmCardData(cardId, cardName, escapeValue, escapeCategory, terrainIcons);
+            return new RacingRealmCardData(cardId, cardName, escapeValue, escapeCategory,
+                terrainIcons, effectIds: effectIds);
         }
     }
 }

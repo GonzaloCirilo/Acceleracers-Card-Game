@@ -40,10 +40,10 @@ namespace AcceleracersCCG.Commands.System
             var stack = player.GetVehicleStack(VehicleUniqueId);
 
             _strippedShifts = stack.EquippedShifts
-                .Where(s => s.Data.EffectId != EffectIds.PersistOnAdvance)
+                .Where(s => !s.Data.HasEffect(EffectIds.PersistOnAdvance))
                 .ToList();
             _strippedAcceleCharger = stack.AcceleCharger != null
-                && stack.AcceleCharger.Data.EffectId != EffectIds.PersistOnAdvance
+                && !stack.AcceleCharger.Data.HasEffect(EffectIds.PersistOnAdvance)
                 ? stack.AcceleCharger
                 : null;
 

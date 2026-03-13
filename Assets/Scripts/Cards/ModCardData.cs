@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
@@ -10,8 +11,8 @@ namespace AcceleracersCCG.Cards
         public ModCardData(string id, string name, SPP spp, int apCost = 1,
             ModabilityIcon modabilityIcons = ModabilityIcon.None,
             TerrainIcon terrainIcons = TerrainIcon.None,
-            string effectId = null)
-            : base(id, name, apCost: apCost, effectId: effectId, spp: spp, terrainIcons: terrainIcons)
+            IEnumerable<string> effectIds = null)
+            : base(id, name, apCost: apCost, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
         {
             ModabilityIcons = modabilityIcons;
         }

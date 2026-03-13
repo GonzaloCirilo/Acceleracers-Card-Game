@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
@@ -16,8 +17,8 @@ namespace AcceleracersCCG.Cards
             TerrainIcon terrainIcons = TerrainIcon.None,
             bool isAdvancedVehicle = false,
             string baseVehicleName = null,
-            string effectId = null)
-            : base(id, name, apCost: 0, effectId: effectId, spp: spp, terrainIcons: terrainIcons)
+            IEnumerable<string> effectIds = null)
+            : base(id, name, apCost: 0, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
         {
             Team = team;
             ModabilityIcons = modabilityIcons;

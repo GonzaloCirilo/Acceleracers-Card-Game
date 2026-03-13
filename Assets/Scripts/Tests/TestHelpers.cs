@@ -14,52 +14,59 @@ namespace AcceleracersCCG.Tests
             int speed = 3, int power = 3, int perf = 3,
             Team team = Team.TekuRacers,
             ModabilityIcon modability = ModabilityIcon.Street | ModabilityIcon.Race,
-            TerrainIcon terrain = TerrainIcon.None)
+            TerrainIcon terrain = TerrainIcon.None,
+            string[] effectIds = null)
         {
             return new VehicleCardData(id, name, new SPP(speed, power, perf),
-                team: team, modabilityIcons: modability, terrainIcons: terrain);
+                team: team, modabilityIcons: modability, terrainIcons: terrain, effectIds: effectIds);
         }
 
         public static ModCardData MakeMod(string id = "m1", string name = "Test Mod",
             int speed = 1, int power = 1, int perf = 1, int apCost = 1,
             ModabilityIcon modability = ModabilityIcon.Street,
-            TerrainIcon terrain = TerrainIcon.None)
+            TerrainIcon terrain = TerrainIcon.None,
+            string[] effectIds = null)
         {
             return new ModCardData(id, name, new SPP(speed, power, perf),
-                apCost: apCost, modabilityIcons: modability, terrainIcons: terrain);
+                apCost: apCost, modabilityIcons: modability, terrainIcons: terrain, effectIds: effectIds);
         }
 
         public static ShiftCardData MakeShift(string id = "s1", string name = "Test Shift",
             int speed = 2, int power = 0, int perf = 0, int apCost = 1,
-            TerrainIcon terrain = TerrainIcon.None)
+            TerrainIcon terrain = TerrainIcon.None,
+            string[] effectIds = null)
         {
             return new ShiftCardData(id, name, new SPP(speed, power, perf),
-                apCost: apCost, terrainIcons: terrain);
+                apCost: apCost, terrainIcons: terrain, effectIds: effectIds);
         }
 
         public static AcceleChargerCardData MakeAcceleCharger(string id = "ac1", string name = "Test AcceleCharger",
             int speed = 1, int power = 1, int perf = 1, int apCost = 1,
-            TerrainIcon terrain = TerrainIcon.None)
+            TerrainIcon terrain = TerrainIcon.None,
+            string[] effectIds = null)
         {
             return new AcceleChargerCardData(id, name, new SPP(speed, power, perf),
-                apCost: apCost, terrainIcons: terrain);
+                apCost: apCost, terrainIcons: terrain, effectIds: effectIds);
         }
 
         public static HazardCardData MakeHazard(string id = "h1", string name = "Test Hazard",
             int dmgSpeed = 2, int dmgPower = 0, int dmgPerf = 0, int apCost = 1,
-            bool canTargetAC = false, bool canTargetVehicles = false)
+            bool canTargetAC = false, bool canTargetVehicles = false,
+            string[] effectIds = null)
         {
             return new HazardCardData(id, name, new SPP(dmgSpeed, dmgPower, dmgPerf),
                 apCost: apCost,
                 canTargetAcceleChargers: canTargetAC,
-                canTargetVehicles: canTargetVehicles);
+                canTargetVehicles: canTargetVehicles,
+                effectIds: effectIds);
         }
 
         public static RacingRealmCardData MakeRealm(string id = "r1", string name = "Test Realm",
             int escapeValue = 5, SPPCategory escapeCategory = SPPCategory.Speed,
-            TerrainIcon terrain = TerrainIcon.Sand)
+            TerrainIcon terrain = TerrainIcon.Sand,
+            string[] effectIds = null)
         {
-            return new RacingRealmCardData(id, name, escapeValue, escapeCategory, terrain);
+            return new RacingRealmCardData(id, name, escapeValue, escapeCategory, terrain, effectIds: effectIds);
         }
 
         /// <summary>

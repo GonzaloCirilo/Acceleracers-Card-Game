@@ -19,7 +19,7 @@ namespace AcceleracersCCG.Rules
             if (vehicle is not VehicleCardData vehicleData)
                 return false;
 
-            if (mod.EffectId == EffectIds.IgnoreModability || vehicle.EffectId == EffectIds.IgnoreModability)
+            if (mod.HasEffect(EffectIds.IgnoreModability) || vehicle.HasEffect(EffectIds.IgnoreModability))
                 return true;
 
             return (modData.ModabilityIcons & vehicleData.ModabilityIcons) != ModabilityIcon.None;
@@ -35,7 +35,7 @@ namespace AcceleracersCCG.Rules
             if (vehicle is not VehicleCardData vehicleData)
                 return "Target is not a Vehicle.";
 
-            if (mod.EffectId == EffectIds.IgnoreModability || vehicle.EffectId == EffectIds.IgnoreModability)
+            if (mod.HasEffect(EffectIds.IgnoreModability) || vehicle.HasEffect(EffectIds.IgnoreModability))
                 return null;
 
             if ((modData.ModabilityIcons & vehicleData.ModabilityIcons) == ModabilityIcon.None)

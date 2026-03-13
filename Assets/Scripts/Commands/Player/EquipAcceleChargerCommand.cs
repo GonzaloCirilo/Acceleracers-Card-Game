@@ -30,7 +30,7 @@ namespace AcceleracersCCG.Commands.Player
             if (stack == null)
                 return "Target vehicle not in play.";
 
-            var equipError = EquipRules.ValidateAcceleCharger(card.Data, stack);
+            var equipError = EquipRules.ValidateAcceleCharger(card.Data, stack, state.RealmTrack);
             if (equipError != null) return equipError;
 
             var apError = ActionPointRules.ValidateCost(player, card.Data.APCost);

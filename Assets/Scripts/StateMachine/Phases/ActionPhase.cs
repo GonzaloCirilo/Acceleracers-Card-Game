@@ -41,7 +41,7 @@ namespace AcceleracersCCG.StateMachine.Phases
 
                 foreach (var stack in player.VehiclesInPlay)
                 {
-                    if (Rules.EquipRules.ValidateMod(mod.Data, stack) == null)
+                    if (Rules.EquipRules.ValidateMod(mod.Data, stack, state.RealmTrack) == null)
                     {
                         commands.Add(new EquipModCommand(playerIdx, mod.UniqueId, stack.Vehicle.UniqueId));
                     }
@@ -56,7 +56,10 @@ namespace AcceleracersCCG.StateMachine.Phases
 
                 foreach (var stack in player.VehiclesInPlay)
                 {
-                    commands.Add(new EquipShiftCommand(playerIdx, shift.UniqueId, stack.Vehicle.UniqueId));
+                    if (Rules.EquipRules.ValidateShift(shift.Data, stack, state.RealmTrack) == null)
+                    {
+                        commands.Add(new EquipShiftCommand(playerIdx, shift.UniqueId, stack.Vehicle.UniqueId));
+                    }
                 }
             }
 
@@ -68,7 +71,7 @@ namespace AcceleracersCCG.StateMachine.Phases
 
                 foreach (var stack in player.VehiclesInPlay)
                 {
-                    if (Rules.EquipRules.ValidateAcceleCharger(ac.Data, stack) == null)
+                    if (Rules.EquipRules.ValidateAcceleCharger(ac.Data, stack, state.RealmTrack) == null)
                     {
                         commands.Add(new EquipAcceleChargerCommand(playerIdx, ac.UniqueId, stack.Vehicle.UniqueId));
                     }

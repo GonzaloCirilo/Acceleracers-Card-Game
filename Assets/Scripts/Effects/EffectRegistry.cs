@@ -19,6 +19,9 @@ namespace AcceleracersCCG.Effects
             registry.Register("hazard_immunity", new HazardImmunityEffect());
             registry.Register("ignore_modability", new IgnoreModabilityEffect());
             registry.Register("persist_on_advance", new PersistOnAdvanceEffect());
+            registry.Register("block_shift", new BlockEquipEffect());
+            registry.Register("block_mod", new BlockEquipEffect());
+            registry.Register("block_accelecharger", new BlockEquipEffect());
             return registry;
         }
 
@@ -36,6 +39,16 @@ namespace AcceleracersCCG.Effects
                 return effect;
 
             throw new System.ArgumentException($"Unknown effect ID: '{effectId}'. Register it before use.");
+        }
+
+        public List<ICardEffect> GetAll(IEnumerable<string> effectIds)
+        {
+            var results = new List<ICardEffect>();
+            foreach (var id in effectIds)
+            {
+                results.Add(Get(id));
+            }
+            return results;
         }
 
         public bool Has(string effectId) => _effects.ContainsKey(effectId);

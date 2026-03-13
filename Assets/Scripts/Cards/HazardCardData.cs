@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
@@ -14,8 +15,8 @@ namespace AcceleracersCCG.Cards
             bool canTargetVehicles = false,
             SPP spp = default,
             TerrainIcon terrainIcons = TerrainIcon.None,
-            string effectId = null)
-            : base(id, name, apCost: apCost, effectId: effectId, spp: spp, terrainIcons: terrainIcons)
+            IEnumerable<string> effectIds = null)
+            : base(id, name, apCost: apCost, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
         {
             SPPDamage = sppDamage;
             CanTargetAcceleChargers = canTargetAcceleChargers;
