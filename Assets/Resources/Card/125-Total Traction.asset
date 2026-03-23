@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118b35addde3f40ba8be879bb995a3e3, type: 3}
   m_Name: 125-Total Traction
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.AcceleChargerDataSO
-  cardId: 125
-  cardName: 
+  cardId: 125_total_traction
+  cardName: Total Traction
+  cardText: a
   effectIds: []
-  terrainIcons: 0
+  terrainIcons: -1
   speed: 0
   power: 0
   performance: 0
-  apCost: 0
-  acceleronSymbol: 
+  apCost: 4
+  acceleronSymbol: Blizzard

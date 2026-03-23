@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5aa3fcc52f384970aebad549a3aca2d, type: 3}
   m_Name: 100-Blizzard Realm
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.RacingRealmDataSO
-  cardId: 
-  cardName: 
+  cardId: 100_blizzard_realm
+  cardName: Blizzard Realm
+  cardText: The Blizzard track thrusts drivers into a vicious snowstorm with zero
+    visibility, sleet so fierce it punches right through windshields, and snow so
+    deep it buries cars whole.
   effectIds: []
-  terrainIcons: 0
-  escapeValue: 0
-  escapeCategory: 0
+  terrainIcons: 16
+  escapeValue: 7
+  escapeCategory: 1

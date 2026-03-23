@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118b35addde3f40ba8be879bb995a3e3, type: 3}
   m_Name: 123-Impervious Tires
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.AcceleChargerDataSO
-  cardId: 
-  cardName: 
+  cardId: 123_impervious_tires
+  cardName: Impervious Tires
+  cardText: 
   effectIds: []
-  speed: 0
-  power: 0
-  performance: 0
   terrainIcons: 0
-  apCost: 0
-  acceleronSymbol: 
+  speed: 2
+  power: 2
+  performance: 2
+  apCost: 4
+  acceleronSymbol: Lava
