@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NUnit.Framework;
 using AcceleracersCCG.Cards;
 using AcceleracersCCG.Commands;
