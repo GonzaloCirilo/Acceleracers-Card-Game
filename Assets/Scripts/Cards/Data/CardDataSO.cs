@@ -14,11 +14,6 @@ namespace AcceleracersCCG.Cards.Data
         public string cardName;
         public string[] effectIds;
 
-        [Header("SPP Stats")]
-        public int speed;
-        public int power;
-        public int performance;
-
         [Header("Terrain")]
         public TerrainIcon terrainIcons;
 

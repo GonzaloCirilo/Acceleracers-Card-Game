@@ -25,7 +25,6 @@ namespace AcceleracersCCG.Cards.Data
                 apCost: apCost,
                 canTargetAcceleChargers: canTargetAcceleChargers,
                 canTargetVehicles: canTargetVehicles,
-                spp: new SPP(speed, power, performance),
                 effectIds: effectIds);
         }
     }

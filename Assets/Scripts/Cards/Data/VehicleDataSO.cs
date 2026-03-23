@@ -6,6 +6,11 @@ namespace AcceleracersCCG.Cards.Data
     [CreateAssetMenu(fileName = "NewVehicle", menuName = "AcceleracersCCG/Vehicle")]
     public class VehicleDataSO : CardDataSO
     {
+        [Header("SPP Stats")]
+        public int speed;
+        public int power;
+        public int performance;
+
         [Header("Vehicle")]
         public Team team;
         public ModabilityIcon modabilityIcons;

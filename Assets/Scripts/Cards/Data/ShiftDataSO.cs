@@ -6,6 +6,11 @@ namespace AcceleracersCCG.Cards.Data
     [CreateAssetMenu(fileName = "NewShift", menuName = "AcceleracersCCG/Shift")]
     public class ShiftDataSO : CardDataSO
     {
+        [Header("SPP Stats")]
+        public int speed;
+        public int power;
+        public int performance;
+
         public int apCost;
 
         public override CardData ToCardData()

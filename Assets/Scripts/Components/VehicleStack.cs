@@ -54,6 +54,16 @@ namespace AcceleracersCCG.Components
         }
 
         /// <summary>
+        /// Gets only the equipped cards (mods, shifts, accelecharger — not the vehicle itself).
+        /// </summary>
+        public IEnumerable<CardInstance> AllEquipment()
+        {
+            foreach (var mod in EquippedMods) yield return mod;
+            foreach (var shift in EquippedShifts) yield return shift;
+            if (AcceleCharger != null) yield return AcceleCharger;
+        }
+
+        /// <summary>
         /// Gets all cards in the stack (vehicle + all equipment).
         /// </summary>
         public IEnumerable<CardInstance> AllCards()

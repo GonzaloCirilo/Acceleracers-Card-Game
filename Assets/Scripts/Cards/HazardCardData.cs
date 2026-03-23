@@ -14,10 +14,9 @@ namespace AcceleracersCCG.Cards
         public HazardCardData(string id, string name, SPP sppDamage, int apCost = 1,
             bool canTargetAcceleChargers = false,
             bool canTargetVehicles = false,
-            SPP spp = default,
             TerrainIcon terrainIcons = TerrainIcon.None,
             IEnumerable<string> effectIds = null)
-            : base(id, name, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
+            : base(id, name, effectIds: effectIds, terrainIcons: terrainIcons)
         {
             APCost = apCost;
             SPPDamage = sppDamage;

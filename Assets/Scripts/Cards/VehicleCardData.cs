@@ -3,9 +3,10 @@ using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
 {
-    public sealed class VehicleCardData : CardData
+    public sealed class VehicleCardData : CardData, ISPPCard
     {
         public override CardType CardType => CardType.Vehicle;
+        public SPP SPP { get; }
         public Team Team { get; }
         public ModabilityIcon ModabilityIcons { get; }
         public bool IsAdvancedVehicle { get; }
@@ -18,8 +19,9 @@ namespace AcceleracersCCG.Cards
             bool isAdvancedVehicle = false,
             string baseVehicleName = null,
             IEnumerable<string> effectIds = null)
-            : base(id, name, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
+            : base(id, name, effectIds: effectIds, terrainIcons: terrainIcons)
         {
+            SPP = spp;
             Team = team;
             ModabilityIcons = modabilityIcons;
             IsAdvancedVehicle = isAdvancedVehicle;

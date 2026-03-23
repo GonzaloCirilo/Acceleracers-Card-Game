@@ -1,3 +1,4 @@
+using AcceleracersCCG.Cards;
 using AcceleracersCCG.Components;
 using AcceleracersCCG.Core;
 
@@ -13,25 +14,19 @@ namespace AcceleracersCCG.Rules
         /// </summary>
         public static SPP Calculate(VehicleStack stack, RealmTrack realmTrack)
         {
-            var total = stack.Vehicle.Data.SPP;
+            var total = ((ISPPCard)stack.Vehicle.Data).SPP;
 
             // Add mods
             foreach (var mod in stack.EquippedMods)
-            {
-                total = total + mod.Data.SPP;
-            }
+                total = total + ((ISPPCard)mod.Data).SPP;
 
             // Add shifts
             foreach (var shift in stack.EquippedShifts)
-            {
-                total = total + shift.Data.SPP;
-            }
+                total = total + ((ISPPCard)shift.Data).SPP;
 
             // Add AcceleCharger
             if (stack.AcceleCharger != null)
-            {
-                total = total + stack.AcceleCharger.Data.SPP;
-            }
+                total = total + ((ISPPCard)stack.AcceleCharger.Data).SPP;
 
             // Terrain bonus: +1 to ALL SPP if any card in the stack has a matching terrain icon
             var terrainBonus = CalculateTerrainBonus(stack, realmTrack);

@@ -1,4 +1,7 @@
+using AcceleracersCCG.Cards;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Effects;
+using AcceleracersCCG.Effects.Implementations;
 using AcceleracersCCG.Rules;
 
 namespace AcceleracersCCG.Commands.Player
@@ -15,8 +18,6 @@ namespace AcceleracersCCG.Commands.Player
         public int TargetVehicleUniqueId { get; }
         public int TargetEquipmentUniqueId { get; }
 
-        // Undo state
-        private SPP _originalTargetSPP;
         private bool _wasJunked;
 
         public PlayHazardCommand(int playerIndex, int hazardCardUniqueId,
@@ -39,7 +40,7 @@ namespace AcceleracersCCG.Commands.Player
             if (hazardCard.Data.CardType != CardType.Hazard)
                 return "Card is not a Hazard.";
 
-            var apError = ActionPointRules.ValidateCost(player, ((Cards.IAPCostCard)hazardCard.Data).APCost);
+            var apError = ActionPointRules.ValidateCost(player, ((IAPCostCard)hazardCard.Data).APCost);
             if (apError != null) return apError;
 
             var targetPlayer = state.GetPlayer(TargetPlayerIndex);
@@ -50,6 +51,10 @@ namespace AcceleracersCCG.Commands.Player
             var targetEquip = targetStack.FindEquipment(TargetEquipmentUniqueId);
             if (targetEquip == null)
                 return "Target equipment not found on vehicle.";
+
+            if (hazardCard.Data.HasEffect(EffectIds.ApplyCountdown) &&
+                targetEquip.Data.CardType != CardType.Mod)
+                return "This Hazard can only target Mods.";
 
             var targetError = HazardTargetRules.ValidateTarget(hazardCard.Data, targetEquip);
             if (targetError != null) return targetError;
@@ -62,31 +67,35 @@ namespace AcceleracersCCG.Commands.Player
             var player = state.GetPlayer(PlayerIndex);
             var hazardCard = player.Hand.Get(HazardCardUniqueId);
 
-            // Remove hazard from hand and deduct AP
+            // Remove hazard from hand, deduct AP, junk the hazard
             player.Hand.Remove(HazardCardUniqueId);
-            player.AP -= ((Cards.IAPCostCard)hazardCard.Data).APCost;
-
-            // Junk the hazard card after use
+            player.AP -= ((IAPCostCard)hazardCard.Data).APCost;
             player.JunkPile.Add(hazardCard);
 
-            // Apply damage to target
             var targetPlayer = state.GetPlayer(TargetPlayerIndex);
             var targetStack = targetPlayer.GetVehicleStack(TargetVehicleUniqueId);
             var targetEquip = targetStack.FindEquipment(TargetEquipmentUniqueId);
 
-            var hazardData = (Cards.HazardCardData)hazardCard.Data;
-            _originalTargetSPP = targetEquip.Data.SPP;
-            var resultSPP = HazardTargetRules.ApplyDamage(targetEquip.Data.SPP, hazardData.SPPDamage);
-
-            _wasJunked = HazardTargetRules.ShouldJunk(resultSPP);
-            if (_wasJunked)
+            if (hazardCard.Data.HasEffect(EffectIds.ApplyCountdown))
             {
-                targetStack.RemoveEquipment(TargetEquipmentUniqueId);
-                targetPlayer.JunkPile.Add(targetEquip);
+                // Place 4 countdown tokens on the target vehicle, keyed by the target equipment's ID.
+                // TuneUpPhase ticks these each turn and junks the Mod when they reach 0.
+                var tokenKey = $"{TimedDestructionEffect.TokenKey}_{targetEquip.UniqueId}";
+                int turns = hazardCard.Data.GetEffectParam(EffectIds.ApplyCountdown, defaultValue: 4);
+                targetStack.Tokens.Set(tokenKey, turns);
             }
-            // Note: if not junked, the damage doesn't permanently reduce SPP
-            // (Hazards either junk the target or do nothing lasting).
-            // The damage check is: does applying damage drop any stat to 0?
+            else
+            {
+                var hazardData = (HazardCardData)hazardCard.Data;
+                var resultSPP = HazardTargetRules.ApplyDamage(((ISPPCard)targetEquip.Data).SPP, hazardData.SPPDamage);
+
+                _wasJunked = HazardTargetRules.ShouldJunk(resultSPP);
+                if (_wasJunked)
+                {
+                    targetStack.RemoveEquipment(TargetEquipmentUniqueId);
+                    targetPlayer.JunkPile.Add(targetEquip);
+                }
+            }
         }
 
         public void Undo(GameState state)

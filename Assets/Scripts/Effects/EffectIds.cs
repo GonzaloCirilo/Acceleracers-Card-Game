@@ -10,6 +10,7 @@ namespace AcceleracersCCG.Effects
         public const string IgnoreModability = "ignore_modability";
         public const string PersistOnAdvance = "persist_on_advance";
         public const string TimedDestruction = "timed_destruction";
+        public const string ApplyCountdown = "apply_countdown";
         public const string BlockShift = "block_shift";
         public const string BlockMod = "block_mod";
         public const string BlockAcceleCharger = "block_accelecharger";

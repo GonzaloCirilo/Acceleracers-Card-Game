@@ -15,19 +15,35 @@ namespace AcceleracersCCG.Cards
         public string Name { get; }
         public abstract CardType CardType { get; }
         public IReadOnlyList<string> EffectIds { get; }
-        public SPP SPP { get; }
         public TerrainIcon TerrainIcons { get; }
 
         protected CardData(string id, string name, IEnumerable<string> effectIds = null,
-            SPP spp = default, TerrainIcon terrainIcons = TerrainIcon.None)
+            TerrainIcon terrainIcons = TerrainIcon.None)
         {
             Id = id ?? throw new ArgumentNullException(nameof(id));
             Name = name ?? throw new ArgumentNullException(nameof(name));
             EffectIds = effectIds?.ToList() ?? new List<string>();
-            SPP = spp;
             TerrainIcons = terrainIcons;
         }
 
-        public bool HasEffect(string effectId) => EffectIds.Contains(effectId);
+        /// <summary>
+        /// Returns true if the card has an effect matching the given ID, with or without a parameter.
+        /// Matches both "effect_id" and "effect_id:value".
+        /// </summary>
+        public bool HasEffect(string effectId) =>
+            EffectIds.Any(e => e == effectId || e.StartsWith(effectId + ":"));
+
+        /// <summary>
+        /// Returns the integer parameter for a parameterized effect ID (e.g. "apply_countdown:4" → 4).
+        /// Returns defaultValue if the effect is absent or has no parameter.
+        /// </summary>
+        public int GetEffectParam(string effectId, int defaultValue = 0)
+        {
+            var entry = EffectIds.FirstOrDefault(e => e == effectId || e.StartsWith(effectId + ":"));
+            if (entry == null) return defaultValue;
+            var colon = entry.IndexOf(':');
+            if (colon < 0) return defaultValue;
+            return int.TryParse(entry.Substring(colon + 1), out int val) ? val : defaultValue;
+        }
     }
 }

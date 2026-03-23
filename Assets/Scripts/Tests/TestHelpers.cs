@@ -59,6 +59,7 @@ namespace AcceleracersCCG.Tests
                 canTargetAcceleChargers: canTargetAC,
                 canTargetVehicles: canTargetVehicles,
                 effectIds: effectIds);
+
         }
 
         public static RacingRealmCardData MakeRealm(string id = "r1", string name = "Test Realm",
