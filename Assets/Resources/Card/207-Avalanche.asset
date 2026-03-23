@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96a66fde4cc8449f9738755d4f39148, type: 3}
+  m_Name: 207-Avalanche
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.HazardDataSO
+  cardId: 207_avalanche
+  cardName: Avalanche
+  cardText: First a tremble. Then a rumble. Then A sound like the world shaking apart.
+    Because it is. Look up - ten thousand tons of snow, trees, boulders, and debris
+    are falling straight at your car!
+  effectIds: []
+  terrainIcons: 0
+  apCost: 2
+  damageSpeed: 1
+  damagePower: 0
+  damagePerformance: 0
+  canTargetAcceleChargers: 0
+  canTargetVehicles: 0
