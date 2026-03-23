@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96a66fde4cc8449f9738755d4f39148, type: 3}
+  m_Name: 187-Black Ice
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.HazardDataSO
+  cardId: 187_black_ice
+  cardName: Black Ice
+  cardText: Blinded by sleet, you hit a patch of deadly Black Ice and spin out of
+    control at 300mph, Pumping the brakes probably won't help very much, but feel
+    free to try.
+  effectIds: []
+  terrainIcons: 0
+  apCost: 3
+  damageSpeed: 0
+  damagePower: 0
+  damagePerformance: -2
+  canTargetAcceleChargers: 0
+  canTargetVehicles: 0
