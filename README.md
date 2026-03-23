@@ -128,6 +128,12 @@ Built-in effects: `NullEffect`, `HazardImmunityEffect`, `IgnoreModabilityEffect`
 
 ---
 
+## Disclaimer
+
+Hot Wheels, Acceleracers, and all related names, characters, and imagery are trademarks of Mattel, Inc. This is an unofficial fan project, not affiliated with or endorsed by Mattel.
+
+---
+
 ## Running Tests
 
 Tests live in `Assets/Scripts/Tests/` and have no Unity dependency — they can run in any C# test runner. Test files cover: SPP arithmetic, command undo, deck building validation, hazard resolution, phase machine transitions, and full game simulations.
