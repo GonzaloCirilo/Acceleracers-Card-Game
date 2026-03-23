@@ -12,6 +12,7 @@ namespace AcceleracersCCG.Cards.Data
         [Header("Base Card Data")]
         public string cardId;
         public string cardName;
+        [TextArea] public string cardText;
         public string[] effectIds;
 
         [Header("Terrain")]
