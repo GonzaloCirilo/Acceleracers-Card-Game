@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.RacingRealmDataSO
   cardId: 98_lava_realm
   cardName: Lava Realm
-  cardText: 
+  cardText: Ultra-hot driving conditions, flaming boulders, super-heated gases and
+    splashing lave pose the greatest threats on the Lava track. Only a cool hand
+    can beat this molten heat.
   effectIds: []
   terrainIcons: 2
   escapeValue: 8

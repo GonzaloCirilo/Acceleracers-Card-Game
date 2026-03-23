@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.HazardDataSO
   cardId: 177_molten_river
   cardName: Molten River
-  cardText: 
+  cardText: 'OVERHEAT: Have opponent place 4 tokens on the Mod you target, then remove
+    1 token each turn during THEIR tune-up phase. When all tokens are gone, immediately
+    remove that Mod to its owner''s junk pile.'
   effectIds:
   - apply_countdown:4
   terrainIcons: 0

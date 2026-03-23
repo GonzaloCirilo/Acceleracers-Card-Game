@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.AcceleChargerDataSO
   cardId: 123_impervious_tires
   cardName: Impervious Tires
-  cardText: 
+  cardText: As long as it's equipped, the Impervious Tires Accele-Charger absorbs
+    all damage to the Vehicle's wheels so that they never wear out.
   effectIds: []
   terrainIcons: 0
   speed: 2

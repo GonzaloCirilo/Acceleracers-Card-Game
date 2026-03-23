@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.AcceleChargerDataSO
   cardId: 125_total_traction
   cardName: Total Traction
-  cardText: a
+  cardText: This Accele-Charger provides enormous traction over WATER, SAND, MUD,
+    LICK, ROUGH and PAVED terrain.
   effectIds: []
   terrainIcons: -1
   speed: 0
