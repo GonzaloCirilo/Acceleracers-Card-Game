@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96a66fde4cc8449f9738755d4f39148, type: 3}
   m_Name: 179-Ice Shrapnel
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.HazardDataSO
-  cardId: 
-  cardName: 
-  cardText: 
-  effectIds: []
+  cardId: 179_ice_shrapnel
+  cardName: Ice Shrapnel
+  cardText: Explosions of ice shards rip cards apart! Ice Shrapnel allows you to
+    remove ALL RACE MODS equipped on ALL opposing Vehicles.
+  effectIds:
+  - junk_all_race_mods
   terrainIcons: 0
-  apCost: 0
+  apCost: 5
   damageSpeed: 0
   damagePower: 0
   damagePerformance: 0
