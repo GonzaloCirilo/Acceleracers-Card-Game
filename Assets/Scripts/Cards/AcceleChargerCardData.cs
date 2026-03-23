@@ -3,17 +3,19 @@ using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Cards
 {
-    public sealed class AcceleChargerCardData : CardData
+    public sealed class AcceleChargerCardData : CardData, IAPCostCard
     {
         public override CardType CardType => CardType.AcceleCharger;
+        public int APCost { get; }
         public string AcceleronSymbol { get; }
 
         public AcceleChargerCardData(string id, string name, SPP spp, int apCost = 1,
             TerrainIcon terrainIcons = TerrainIcon.None,
             string acceleronSymbol = null,
             IEnumerable<string> effectIds = null)
-            : base(id, name, apCost: apCost, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
+            : base(id, name, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
         {
+            APCost = apCost;
             AcceleronSymbol = acceleronSymbol;
         }
     }

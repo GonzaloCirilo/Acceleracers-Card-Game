@@ -18,7 +18,7 @@ namespace AcceleracersCCG.Cards
             bool isAdvancedVehicle = false,
             string baseVehicleName = null,
             IEnumerable<string> effectIds = null)
-            : base(id, name, apCost: 0, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
+            : base(id, name, effectIds: effectIds, spp: spp, terrainIcons: terrainIcons)
         {
             Team = team;
             ModabilityIcons = modabilityIcons;

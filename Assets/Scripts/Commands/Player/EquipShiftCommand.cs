@@ -33,7 +33,7 @@ namespace AcceleracersCCG.Commands.Player
             var equipError = EquipRules.ValidateShift(card.Data, stack, state.RealmTrack);
             if (equipError != null) return equipError;
 
-            var apError = ActionPointRules.ValidateCost(player, card.Data.APCost);
+            var apError = ActionPointRules.ValidateCost(player, ((Cards.IAPCostCard)card.Data).APCost);
             if (apError != null) return apError;
 
             return null;
@@ -47,7 +47,7 @@ namespace AcceleracersCCG.Commands.Player
 
             player.Hand.Remove(CardUniqueId);
             stack.EquippedShifts.Add(card);
-            player.AP -= card.Data.APCost;
+            player.AP -= ((Cards.IAPCostCard)card.Data).APCost;
         }
 
         public void Undo(GameState state)
@@ -58,7 +58,7 @@ namespace AcceleracersCCG.Commands.Player
             if (card != null)
             {
                 player.Hand.Add(card);
-                player.AP += card.Data.APCost;
+                player.AP += ((Cards.IAPCostCard)card.Data).APCost;
             }
         }
     }

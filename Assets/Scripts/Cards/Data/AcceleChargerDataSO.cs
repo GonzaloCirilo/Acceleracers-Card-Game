@@ -7,6 +7,7 @@ namespace AcceleracersCCG.Cards.Data
     public class AcceleChargerDataSO : CardDataSO
     {
         [Header("AcceleCharger")]
+        public int apCost;
         public string acceleronSymbol;
 
         public override CardData ToCardData()

@@ -39,7 +39,7 @@ namespace AcceleracersCCG.Commands.Player
             if (hazardCard.Data.CardType != CardType.Hazard)
                 return "Card is not a Hazard.";
 
-            var apError = ActionPointRules.ValidateCost(player, hazardCard.Data.APCost);
+            var apError = ActionPointRules.ValidateCost(player, ((Cards.IAPCostCard)hazardCard.Data).APCost);
             if (apError != null) return apError;
 
             var targetPlayer = state.GetPlayer(TargetPlayerIndex);
@@ -64,7 +64,7 @@ namespace AcceleracersCCG.Commands.Player
 
             // Remove hazard from hand and deduct AP
             player.Hand.Remove(HazardCardUniqueId);
-            player.AP -= hazardCard.Data.APCost;
+            player.AP -= ((Cards.IAPCostCard)hazardCard.Data).APCost;
 
             // Junk the hazard card after use
             player.JunkPile.Add(hazardCard);

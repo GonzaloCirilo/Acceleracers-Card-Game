@@ -6,6 +6,9 @@ namespace AcceleracersCCG.Cards.Data
     [CreateAssetMenu(fileName = "NewHazard", menuName = "AcceleracersCCG/Hazard")]
     public class HazardDataSO : CardDataSO
     {
+        [Header("Hazard")]
+        public int apCost;
+
         [Header("Hazard Damage")]
         public int damageSpeed;
         public int damagePower;

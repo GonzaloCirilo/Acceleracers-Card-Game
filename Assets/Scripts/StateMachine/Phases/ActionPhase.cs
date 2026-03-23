@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AcceleracersCCG.Cards;
 using AcceleracersCCG.Commands;
 using AcceleracersCCG.Commands.Player;
 using AcceleracersCCG.Core;
@@ -37,7 +38,7 @@ namespace AcceleracersCCG.StateMachine.Phases
             var mods = player.Hand.GetByType(CardType.Mod);
             foreach (var mod in mods)
             {
-                if (player.AP < mod.Data.APCost) continue;
+                if (player.AP < ((IAPCostCard)mod.Data).APCost) continue;
 
                 foreach (var stack in player.VehiclesInPlay)
                 {
@@ -52,7 +53,7 @@ namespace AcceleracersCCG.StateMachine.Phases
             var shifts = player.Hand.GetByType(CardType.Shift);
             foreach (var shift in shifts)
             {
-                if (player.AP < shift.Data.APCost) continue;
+                if (player.AP < ((IAPCostCard)shift.Data).APCost) continue;
 
                 foreach (var stack in player.VehiclesInPlay)
                 {
@@ -67,7 +68,7 @@ namespace AcceleracersCCG.StateMachine.Phases
             var acceleChargers = player.Hand.GetByType(CardType.AcceleCharger);
             foreach (var ac in acceleChargers)
             {
-                if (player.AP < ac.Data.APCost) continue;
+                if (player.AP < ((IAPCostCard)ac.Data).APCost) continue;
 
                 foreach (var stack in player.VehiclesInPlay)
                 {
@@ -83,7 +84,7 @@ namespace AcceleracersCCG.StateMachine.Phases
             var opponent = state.InactivePlayer;
             foreach (var hazard in hazards)
             {
-                if (player.AP < hazard.Data.APCost) continue;
+                if (player.AP < ((IAPCostCard)hazard.Data).APCost) continue;
 
                 foreach (var oppStack in opponent.VehiclesInPlay)
                 {

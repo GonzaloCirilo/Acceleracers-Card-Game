@@ -7,6 +7,7 @@ namespace AcceleracersCCG.Cards.Data
     public class ModDataSO : CardDataSO
     {
         [Header("Mod")]
+        public int apCost;
         public ModabilityIcon modabilityIcons;
 
         public override CardData ToCardData()

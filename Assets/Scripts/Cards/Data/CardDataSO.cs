@@ -12,7 +12,6 @@ namespace AcceleracersCCG.Cards.Data
         [Header("Base Card Data")]
         public string cardId;
         public string cardName;
-        public int apCost;
         public string[] effectIds;
 
         [Header("SPP Stats")]
