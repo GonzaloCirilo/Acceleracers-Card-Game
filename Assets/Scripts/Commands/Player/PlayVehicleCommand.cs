@@ -1,6 +1,7 @@
 using AcceleracersCCG.Cards;
 using AcceleracersCCG.Components;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Effects;
 using AcceleracersCCG.Rules;
 
 namespace AcceleracersCCG.Commands.Player
@@ -13,10 +14,13 @@ namespace AcceleracersCCG.Commands.Player
         public int PlayerIndex { get; }
         public int CardUniqueId { get; }
 
-        public PlayVehicleCommand(int playerIndex, int cardUniqueId)
+        private readonly EffectRegistry _effectRegistry;
+
+        public PlayVehicleCommand(int playerIndex, int cardUniqueId, EffectRegistry effectRegistry = null)
         {
             PlayerIndex = playerIndex;
             CardUniqueId = cardUniqueId;
+            _effectRegistry = effectRegistry;
         }
 
         public string Validate(GameState state)
@@ -39,6 +43,24 @@ namespace AcceleracersCCG.Commands.Player
             stack.RealmIndex = 0;
             player.VehiclesInPlay.Add(stack);
             player.HasPlayedVehicleThisTurn = true;
+
+            if (_effectRegistry != null)
+            {
+                var context = new CardEffectContext
+                {
+                    OwnerPlayerIndex = PlayerIndex,
+                    SourceCard = card,
+                    SourceStack = stack,
+                    Trigger = EffectTrigger.OnPlay
+                };
+                foreach (var effectId in card.Data.EffectIds)
+                {
+                    var effect = _effectRegistry.Get(effectId);
+                    var commands = effect.Resolve(state, context);
+                    foreach (var cmd in commands)
+                        cmd.Execute(state);
+                }
+            }
         }
 
         public void Undo(GameState state)

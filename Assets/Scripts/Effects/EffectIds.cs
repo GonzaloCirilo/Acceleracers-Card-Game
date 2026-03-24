@@ -15,5 +15,6 @@ namespace AcceleracersCCG.Effects
         public const string BlockMod = "block_mod";
         public const string BlockAcceleCharger = "block_accelecharger";
         public const string JunkAllRaceMods = "junk_all_race_mods";
+        public const string RecoverModFromJunk = "recover_mod_from_junk";
     }
 }

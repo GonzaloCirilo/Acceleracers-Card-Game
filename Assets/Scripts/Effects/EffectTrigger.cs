@@ -5,6 +5,7 @@ namespace AcceleracersCCG.Effects
     /// </summary>
     public enum EffectTrigger
     {
+        OnPlay,
         OnEquip,
         OnRemove,
         OnAdvance,
