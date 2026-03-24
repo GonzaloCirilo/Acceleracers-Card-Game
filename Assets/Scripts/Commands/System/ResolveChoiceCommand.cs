@@ -1,3 +1,4 @@
+using System.Linq;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Commands.System
