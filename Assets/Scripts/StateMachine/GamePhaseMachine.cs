@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AcceleracersCCG.Commands;
+using AcceleracersCCG.Commands.System;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.StateMachine
@@ -74,11 +75,13 @@ namespace AcceleracersCCG.StateMachine
 
         /// <summary>
         /// Called when the active player signals end of current interactive phase.
+        /// Blocked if a pending choice has not been resolved.
         /// </summary>
         public void AdvancePhase(GameState state)
         {
             if (CurrentPhase == null) return;
             if (state.Result != GameResult.InProgress) return;
+            if (state.PendingChoice != null) return;
 
             var nextPhaseId = CurrentPhase.GetNextPhase(state);
             TransitionTo(nextPhaseId, state);
@@ -98,11 +101,20 @@ namespace AcceleracersCCG.StateMachine
 
         /// <summary>
         /// Get legal commands for the current interactive phase.
+        /// If a choice is pending, only resolution commands are returned.
         /// </summary>
         public List<ICommand> GetLegalCommands(GameState state)
         {
             if (CurrentPhase == null || CurrentPhase.IsAutomatic)
                 return new List<ICommand>();
+
+            if (state.PendingChoice != null)
+            {
+                var resolveCommands = new List<ICommand>();
+                foreach (var optionId in state.PendingChoice.Options)
+                    resolveCommands.Add(new ResolveChoiceCommand(optionId));
+                return resolveCommands;
+            }
 
             return CurrentPhase.GetLegalPlayerCommands(state);
         }

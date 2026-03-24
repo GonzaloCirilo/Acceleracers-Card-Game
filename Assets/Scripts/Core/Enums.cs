@@ -68,4 +68,9 @@ namespace AcceleracersCCG.Core
         Player1Wins,
         Draw
     }
+
+    public enum ChoiceType
+    {
+        RecoverModFromJunk
+    }
 }

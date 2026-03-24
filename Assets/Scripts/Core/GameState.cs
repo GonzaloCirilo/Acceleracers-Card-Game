@@ -15,6 +15,7 @@ namespace AcceleracersCCG.Core
         public int TurnNumber { get; set; }
         public GameResult Result { get; set; }
         public int Seed { get; set; }
+        public PendingChoice PendingChoice { get; set; }
 
         public PlayerState ActivePlayer => Players[ActivePlayerIndex];
         public PlayerState InactivePlayer => Players[1 - ActivePlayerIndex];
@@ -35,7 +36,8 @@ namespace AcceleracersCCG.Core
         }
 
         private GameState(PlayerState[] players, RealmTrack realmTrack, int activePlayerIndex,
-            GamePhaseId currentPhase, int turnNumber, GameResult result, int seed)
+            GamePhaseId currentPhase, int turnNumber, GameResult result, int seed,
+            PendingChoice pendingChoice)
         {
             Players = players;
             RealmTrack = realmTrack;
@@ -44,6 +46,7 @@ namespace AcceleracersCCG.Core
             TurnNumber = turnNumber;
             Result = result;
             Seed = seed;
+            PendingChoice = pendingChoice;
         }
 
         public PlayerState GetPlayer(int index) => Players[index];
@@ -57,7 +60,8 @@ namespace AcceleracersCCG.Core
                 CurrentPhase,
                 TurnNumber,
                 Result,
-                Seed
+                Seed,
+                PendingChoice?.Clone()
             );
         }
     }
