@@ -48,6 +48,10 @@ namespace AcceleracersCCG.Commands.System
                 case ChoiceType.TransferModSelectTarget:
                     new TransferModCommand(choice.PlayerIndex, choice.AuxCardUniqueId.Value, SelectedCardUniqueId).Execute(state);
                     break;
+
+                case ChoiceType.RecoverModsForAP:
+                    ResolveRecoverModsForAP(state, choice);
+                    break;
             }
         }
 
@@ -81,6 +85,37 @@ namespace AcceleracersCCG.Commands.System
                 options: targets,
                 auxCardUniqueId: SelectedCardUniqueId
             );
+        }
+
+        private void ResolveRecoverModsForAP(GameState state, PendingChoice choice)
+        {
+            // Player chose to stop
+            if (SelectedCardUniqueId == PendingChoice.PassOptionId) return;
+
+            var player = state.GetPlayer(choice.PlayerIndex);
+            var mod = player.JunkPile.Cards.FirstOrDefault(c => c.UniqueId == SelectedCardUniqueId);
+            if (mod == null) return;
+
+            player.JunkPile.Remove(SelectedCardUniqueId);
+            player.Hand.Add(mod);
+            player.AP -= 1;
+
+            // Offer another recovery if AP and mods remain
+            if (player.AP < 1) return;
+
+            var remaining = player.JunkPile.Cards
+                .Where(c => c.Data.CardType == Core.CardType.Mod)
+                .Select(c => c.UniqueId)
+                .ToList();
+
+            if (remaining.Count == 0) return;
+
+            var options = new List<int>(remaining) { PendingChoice.PassOptionId };
+            state.PendingChoice = new PendingChoice(
+                ChoiceType.RecoverModsForAP,
+                choice.PlayerIndex,
+                choice.SourceCardUniqueId,
+                options);
         }
 
         public void Undo(GameState state)

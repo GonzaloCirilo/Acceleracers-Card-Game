@@ -73,6 +73,7 @@ namespace AcceleracersCCG.Core
     {
         RecoverModFromJunk,
         TransferModSelectMod,
-        TransferModSelectTarget
+        TransferModSelectTarget,
+        RecoverModsForAP
     }
 }

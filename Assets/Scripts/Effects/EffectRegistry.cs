@@ -23,6 +23,7 @@ namespace AcceleracersCCG.Effects
             registry.Register("block_mod", new BlockEquipEffect());
             registry.Register("block_accelecharger", new BlockEquipEffect());
             registry.Register("recover_mod_from_junk", new RecoverModFromJunkEffect());
+            registry.Register("recover_mods_for_ap", new RecoverModsForAPEffect());
             return registry;
         }
 

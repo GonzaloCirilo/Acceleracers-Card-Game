@@ -8,6 +8,9 @@ namespace AcceleracersCCG.Core
     /// </summary>
     public class PendingChoice
     {
+        /// <summary>Sentinel value meaning "stop / skip" — not a real card unique ID.</summary>
+        public const int PassOptionId = -1;
+
         /// <summary>What kind of choice the player must make.</summary>
         public ChoiceType Type { get; }
 
