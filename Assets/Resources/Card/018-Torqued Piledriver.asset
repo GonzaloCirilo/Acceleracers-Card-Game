@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 018-Torqued Piledriver
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 18_torqued_piledriver
+  cardName: Torqued Piledriver
+  cardText: A modified off-roader, this dirt demon's top speed has been increased
+    by the addition of twin, pre-cooled vector intake tunnels on each side of the
+    engine.
+  effectIds: []
+  terrainIcons: 9
+  speed: 3
+  power: 3
+  performance: 4
+  team: 1
+  modabilityIcons: 5
