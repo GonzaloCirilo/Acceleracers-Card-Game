@@ -20,17 +20,22 @@ namespace AcceleracersCCG.Core
         /// <summary>Unique IDs of cards the player can select from.</summary>
         public IReadOnlyList<int> Options { get; }
 
-        public PendingChoice(ChoiceType type, int playerIndex, int sourceCardUniqueId, IReadOnlyList<int> options)
+        /// <summary>Optional extra card ID to carry state between multi-step choices.</summary>
+        public int? AuxCardUniqueId { get; }
+
+        public PendingChoice(ChoiceType type, int playerIndex, int sourceCardUniqueId,
+            IReadOnlyList<int> options, int? auxCardUniqueId = null)
         {
             Type = type;
             PlayerIndex = playerIndex;
             SourceCardUniqueId = sourceCardUniqueId;
             Options = options;
+            AuxCardUniqueId = auxCardUniqueId;
         }
 
         public PendingChoice Clone()
         {
-            return new PendingChoice(Type, PlayerIndex, SourceCardUniqueId, new List<int>(Options));
+            return new PendingChoice(Type, PlayerIndex, SourceCardUniqueId, new List<int>(Options), AuxCardUniqueId);
         }
     }
 }

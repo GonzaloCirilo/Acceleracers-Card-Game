@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using AcceleracersCCG.Cards;
 using AcceleracersCCG.Commands;
 using AcceleracersCCG.Commands.Player;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Effects;
 
 namespace AcceleracersCCG.StateMachine.Phases
 {
@@ -113,6 +115,21 @@ namespace AcceleracersCCG.StateMachine.Phases
                             opponent.PlayerIndex, oppStack.Vehicle.UniqueId, oppStack.AcceleCharger.UniqueId));
                     }
                 }
+            }
+
+            // Activated vehicle effects (e.g. Rolling Thunder transfer mod)
+            foreach (var stack in player.VehiclesInPlay)
+            {
+                if (!stack.Vehicle.Data.HasEffect(EffectIds.TransferMod)) continue;
+                if (!stack.EquippedMods.Any()) continue;
+                bool hasTarget = player.VehiclesInPlay.Any(t =>
+                    t != stack &&
+                    ((VehicleCardData)t.Vehicle.Data).Team == Team.MetalManiacs &&
+                    t.RealmIndex == stack.RealmIndex &&
+                    stack.EquippedMods.Any(m => Rules.ModabilityRules.CanEquipMod(m.Data, t.Vehicle.Data))
+                );
+                if (hasTarget)
+                    commands.Add(new ActivateVehicleEffectCommand(playerIdx, stack.Vehicle.UniqueId));
             }
 
             // Spend AP to draw
