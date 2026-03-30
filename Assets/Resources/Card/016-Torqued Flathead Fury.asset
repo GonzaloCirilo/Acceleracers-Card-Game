@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 016-Torqued Flathead Fury
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 16_torqued_flathead_fury
+  cardName: Torqued Flathead Fury
+  cardText: This muscle car - a fusion of both old school and state-of-the-art auto
+    tech - has boosted performance from an improved Nitrox2 delivery system.
+  effectIds: []
+  terrainIcons: 1
+  speed: 4
+  power: 4
+  performance: 4
+  team: 1
+  modabilityIcons: 2
