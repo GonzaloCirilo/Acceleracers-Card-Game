@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
-  m_Name: 002-Jaw Hammer
+  m_Name: 002-Jaw Jammer
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
-  cardId: 2_jaw_hammer
-  cardName: Jaw Hammer
+  cardId: 2_jaw_jammer
+  cardName: Jaw Jammer
   cardText: This one-of-a-kind, hand-built drag bike is made of stainless steel and
     powered by a V8 engine
   effectIds: []
