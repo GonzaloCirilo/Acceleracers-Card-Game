@@ -28,7 +28,8 @@ namespace AcceleracersCCG.Commands.Player
             var player = state.GetPlayer(PlayerIndex);
             var stack = player.VehiclesInPlay.FirstOrDefault(s => s.Vehicle.UniqueId == VehicleUniqueId);
             if (stack == null) return "Vehicle not in play.";
-            if (!stack.Vehicle.Data.HasEffect(EffectIds.TransferMod))
+            if (!stack.Vehicle.Data.HasEffect(EffectIds.TransferMod) &&
+                !stack.Vehicle.Data.HasEffect(EffectIds.TransferModIgnoreModability))
                 return "Vehicle has no activatable effect.";
             return null;
         }
@@ -39,10 +40,12 @@ namespace AcceleracersCCG.Commands.Player
             var stack = player.VehiclesInPlay.First(s => s.Vehicle.UniqueId == VehicleUniqueId);
 
             if (stack.Vehicle.Data.HasEffect(EffectIds.TransferMod))
-                ExecuteTransferMod(state, player, stack);
+                ExecuteTransferMod(state, player, stack, ignoreModability: false);
+            else if (stack.Vehicle.Data.HasEffect(EffectIds.TransferModIgnoreModability))
+                ExecuteTransferMod(state, player, stack, ignoreModability: true);
         }
 
-        private void ExecuteTransferMod(GameState state, PlayerState player, Components.VehicleStack sourceStack)
+        private void ExecuteTransferMod(GameState state, PlayerState player, Components.VehicleStack sourceStack, bool ignoreModability)
         {
             // Collect mods that have at least one valid target
             var eligibleMods = new List<int>();
@@ -52,7 +55,7 @@ namespace AcceleracersCCG.Commands.Player
                     t != sourceStack &&
                     ((VehicleCardData)t.Vehicle.Data).Team == Team.MetalManiacs &&
                     t.RealmIndex == sourceStack.RealmIndex &&
-                    ModabilityRules.CanEquipMod(mod.Data, t.Vehicle.Data)
+                    (ignoreModability || ModabilityRules.CanEquipMod(mod.Data, t.Vehicle.Data))
                 );
                 if (hasTarget) eligibleMods.Add(mod.UniqueId);
             }
@@ -64,7 +67,8 @@ namespace AcceleracersCCG.Commands.Player
                 ChoiceType.TransferModSelectMod,
                 PlayerIndex,
                 sourceCardUniqueId: VehicleUniqueId,
-                options: eligibleMods
+                options: eligibleMods,
+                ignoreModability: ignoreModability
             );
         }
 

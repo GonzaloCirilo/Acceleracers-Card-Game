@@ -46,7 +46,7 @@ namespace AcceleracersCCG.Commands.System
                     break;
 
                 case ChoiceType.TransferModSelectTarget:
-                    new TransferModCommand(choice.PlayerIndex, choice.AuxCardUniqueId.Value, SelectedCardUniqueId).Execute(state);
+                    new TransferModCommand(choice.PlayerIndex, choice.AuxCardUniqueId.Value, SelectedCardUniqueId, choice.IgnoreModability).Execute(state);
                     break;
 
                 case ChoiceType.RecoverModsForAP:
@@ -83,7 +83,8 @@ namespace AcceleracersCCG.Commands.System
                 choice.PlayerIndex,
                 sourceCardUniqueId: choice.SourceCardUniqueId,
                 options: targets,
-                auxCardUniqueId: SelectedCardUniqueId
+                auxCardUniqueId: SelectedCardUniqueId,
+                ignoreModability: choice.IgnoreModability
             );
         }
 

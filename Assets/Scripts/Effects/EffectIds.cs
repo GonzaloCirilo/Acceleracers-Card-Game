@@ -18,5 +18,6 @@ namespace AcceleracersCCG.Effects
         public const string RecoverModFromJunk = "recover_mod_from_junk";
         public const string RecoverModsForAP = "recover_mods_for_ap";
         public const string TransferMod = "transfer_mod";
+        public const string TransferModIgnoreModability = "transfer_mod_ignore_modability";
     }
 }

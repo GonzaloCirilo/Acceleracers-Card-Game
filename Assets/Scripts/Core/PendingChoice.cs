@@ -26,19 +26,23 @@ namespace AcceleracersCCG.Core
         /// <summary>Optional extra card ID to carry state between multi-step choices.</summary>
         public int? AuxCardUniqueId { get; }
 
+        /// <summary>When true, modability rules are skipped (e.g. Torqued Rolling Thunder).</summary>
+        public bool IgnoreModability { get; }
+
         public PendingChoice(ChoiceType type, int playerIndex, int sourceCardUniqueId,
-            IReadOnlyList<int> options, int? auxCardUniqueId = null)
+            IReadOnlyList<int> options, int? auxCardUniqueId = null, bool ignoreModability = false)
         {
             Type = type;
             PlayerIndex = playerIndex;
             SourceCardUniqueId = sourceCardUniqueId;
             Options = options;
             AuxCardUniqueId = auxCardUniqueId;
+            IgnoreModability = ignoreModability;
         }
 
         public PendingChoice Clone()
         {
-            return new PendingChoice(Type, PlayerIndex, SourceCardUniqueId, new List<int>(Options), AuxCardUniqueId);
+            return new PendingChoice(Type, PlayerIndex, SourceCardUniqueId, new List<int>(Options), AuxCardUniqueId, IgnoreModability);
         }
     }
 }

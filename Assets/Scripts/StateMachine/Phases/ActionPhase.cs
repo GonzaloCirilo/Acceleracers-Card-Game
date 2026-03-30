@@ -117,16 +117,20 @@ namespace AcceleracersCCG.StateMachine.Phases
                 }
             }
 
-            // Activated vehicle effects (e.g. Rolling Thunder transfer mod)
+            // Activated vehicle effects (e.g. Rolling Thunder / Torqued Rolling Thunder transfer mod)
             foreach (var stack in player.VehiclesInPlay)
             {
-                if (!stack.Vehicle.Data.HasEffect(EffectIds.TransferMod)) continue;
+                bool hasTransfer = stack.Vehicle.Data.HasEffect(EffectIds.TransferMod);
+                bool hasTransferIgnore = stack.Vehicle.Data.HasEffect(EffectIds.TransferModIgnoreModability);
+                if (!hasTransfer && !hasTransferIgnore) continue;
                 if (!stack.EquippedMods.Any()) continue;
+
+                bool ignoreModability = hasTransferIgnore;
                 bool hasTarget = player.VehiclesInPlay.Any(t =>
                     t != stack &&
                     ((VehicleCardData)t.Vehicle.Data).Team == Team.MetalManiacs &&
                     t.RealmIndex == stack.RealmIndex &&
-                    stack.EquippedMods.Any(m => Rules.ModabilityRules.CanEquipMod(m.Data, t.Vehicle.Data))
+                    (ignoreModability || stack.EquippedMods.Any(m => Rules.ModabilityRules.CanEquipMod(m.Data, t.Vehicle.Data)))
                 );
                 if (hasTarget)
                     commands.Add(new ActivateVehicleEffectCommand(playerIdx, stack.Vehicle.UniqueId));

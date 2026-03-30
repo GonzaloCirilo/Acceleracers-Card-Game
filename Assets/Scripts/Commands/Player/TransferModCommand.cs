@@ -14,12 +14,14 @@ namespace AcceleracersCCG.Commands.Player
         public int PlayerIndex { get; }
         public int ModUniqueId { get; }
         public int TargetVehicleUniqueId { get; }
+        public bool IgnoreModability { get; }
 
-        public TransferModCommand(int playerIndex, int modUniqueId, int targetVehicleUniqueId)
+        public TransferModCommand(int playerIndex, int modUniqueId, int targetVehicleUniqueId, bool ignoreModability = false)
         {
             PlayerIndex = playerIndex;
             ModUniqueId = modUniqueId;
             TargetVehicleUniqueId = targetVehicleUniqueId;
+            IgnoreModability = ignoreModability;
         }
 
         public string Validate(GameState state)
@@ -37,6 +39,7 @@ namespace AcceleracersCCG.Commands.Player
             if (targetVehicleData.Team != Team.MetalManiacs) return "Target vehicle must be a Metal Maniac.";
             if (targetStack.RealmIndex != sourceStack.RealmIndex) return "Target vehicle must be in the same Realm.";
 
+            if (IgnoreModability) return null;
             var mod = sourceStack.EquippedMods.First(m => m.UniqueId == ModUniqueId);
             return ModabilityRules.ValidateModEquip(mod.Data, targetStack.Vehicle.Data);
         }
