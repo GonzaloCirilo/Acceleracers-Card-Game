@@ -17,7 +17,7 @@ MonoBehaviour:
   cardText: This muscle car fuses traditional hot rod tech with cutting edge modifications
     to create some serious hybrid street muscle.
   effectIds: []
-  terrainIcons: 0
+  terrainIcons: 1
   speed: 3
   power: 4
   performance: 4
