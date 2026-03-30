@@ -19,7 +19,7 @@ MonoBehaviour:
     Modability rules apply.
   effectIds:
   - transfer_mod
-  terrainIcons: 2
+  terrainIcons: 16
   speed: 3
   power: 3
   performance: 2
