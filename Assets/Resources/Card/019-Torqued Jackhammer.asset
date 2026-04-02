@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 019-Torqued Jackhammer
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
   cardId: 19_torqued_jackhammer
-  cardName: 
+  cardName: Torqued Jackhammer
   cardText: Enhanced by twin turbos, this rear and frontengine station wagon packs
     a lot of power. Maybe too much power. Controlling the Torqued Jackhammer ain't
     driving - it's a wrestling match.

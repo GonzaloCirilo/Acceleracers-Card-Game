@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
-  m_Name: 20-Torqued Spine Buster
+  m_Name: 020-Torqued Spine Buster
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
   cardId: 20_torqued_spine_buster
-  cardName: 
+  cardName: Torqued Spine Buster
   cardText: Tricked out to the max with twin multi-fuel intake tunnels, radical aerodynamics,
     and advanced fuel compression, this car is so powerful that just keeping it between
     the lines is a real accomplishment.
