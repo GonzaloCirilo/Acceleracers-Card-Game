@@ -19,5 +19,22 @@ namespace AcceleracersCCG.Effects
         public const string RecoverModsForAP = "recover_mods_for_ap";
         public const string TransferMod = "transfer_mod";
         public const string TransferModIgnoreModability = "transfer_mod_ignore_modability";
+
+        // Parameterized prefixes — append ":N" where N is 1-based realm number.
+        // e.g. "retain_shifts_on_realm_advance:2" = retain shifts when advancing to 2nd realm.
+        public const string RetainShiftsOnRealmAdvancePrefix = "retain_shifts_on_realm_advance";
+        public const string RetainAcceleChargerOnRealmAdvancePrefix = "retain_accelecharger_on_realm_advance";
+
+        /// <summary>
+        /// Parses a parameterized effect ID like "prefix:value" and returns the int value.
+        /// Returns -1 if the effect doesn't match the prefix.
+        /// </summary>
+        public static int ParseParam(string effectId, string prefix)
+        {
+            if (effectId != null && effectId.StartsWith(prefix + ":") &&
+                int.TryParse(effectId.Substring(prefix.Length + 1), out int value))
+                return value;
+            return -1;
+        }
     }
 }
