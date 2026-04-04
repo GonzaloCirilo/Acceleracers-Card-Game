@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
   m_Name: 029-Reverb
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
-  cardId: 
-  cardName: 
-  cardText: 
+  cardId: 29_reverb
+  cardName: Reverb
+  cardText: Powered by a 6 liter V8 with hydraulic valves, Reverb may be finicky
+    about control, but, when it's running tight, this car is nearly unbeatable.
   effectIds: []
-  terrainIcons: 0
-  speed: 0
-  power: 0
-  performance: 0
-  team: 0
-  modabilityIcons: 0
+  terrainIcons: 32
+  speed: 6
+  power: 4
+  performance: 3
+  team: 2
+  modabilityIcons: 2
