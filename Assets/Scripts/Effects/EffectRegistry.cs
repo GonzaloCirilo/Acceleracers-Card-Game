@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AcceleracersCCG.Core;
 using AcceleracersCCG.Effects.Implementations;
 
 namespace AcceleracersCCG.Effects
@@ -40,7 +41,24 @@ namespace AcceleracersCCG.Effects
             if (_effects.TryGetValue(effectId, out var effect))
                 return effect;
 
+            // Handle parameterized effects (e.g. "recover_mod_with_spp:speed")
+            var resolved = ResolveParameterized(effectId);
+            if (resolved != null) return resolved;
+
             throw new System.ArgumentException($"Unknown effect ID: '{effectId}'. Register it before use.");
+        }
+
+        private ICardEffect ResolveParameterized(string effectId)
+        {
+            var sppParam = EffectIds.ParseStringParam(effectId, EffectIds.RecoverModWithSPPPrefix);
+            if (sppParam != null)
+            {
+                var category = RecoverModWithSPPEffect.ParseCategory(sppParam);
+                var effect = new RecoverModWithSPPEffect(category);
+                _effects[effectId] = effect; // cache for next lookup
+                return effect;
+            }
+            return null;
         }
 
         public List<ICardEffect> GetAll(IEnumerable<string> effectIds)

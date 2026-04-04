@@ -45,11 +45,11 @@ namespace AcceleracersCCG.Commands.System
             bool vehicleRetainsAcceleCharger = false;
             foreach (var effectId in stack.Vehicle.Data.EffectIds)
             {
-                int realm = EffectIds.ParseParam(effectId, EffectIds.RetainShiftsOnRealmAdvancePrefix);
+                int realm = EffectIds.ParseIntParam(effectId, EffectIds.RetainShiftsOnRealmAdvancePrefix);
                 if (realm == advancingToRealm + 1) // param is 1-based, RealmIndex is 0-based
                     vehicleRetainsShifts = true;
 
-                realm = EffectIds.ParseParam(effectId, EffectIds.RetainAcceleChargerOnRealmAdvancePrefix);
+                realm = EffectIds.ParseIntParam(effectId, EffectIds.RetainAcceleChargerOnRealmAdvancePrefix);
                 if (realm == advancingToRealm + 1)
                     vehicleRetainsAcceleCharger = true;
             }
