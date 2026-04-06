@@ -46,11 +46,11 @@ namespace AcceleracersCCG.Commands.System
             foreach (var effectId in stack.Vehicle.Data.EffectIds)
             {
                 int realm = EffectIds.ParseIntParam(effectId, EffectIds.RetainShiftsOnRealmAdvancePrefix);
-                if (realm == advancingToRealm + 1) // param is 1-based, RealmIndex is 0-based
+                if (realm == 0 || realm == advancingToRealm + 1) // 0 = any realm, otherwise 1-based
                     vehicleRetainsShifts = true;
 
                 realm = EffectIds.ParseIntParam(effectId, EffectIds.RetainAcceleChargerOnRealmAdvancePrefix);
-                if (realm == advancingToRealm + 1)
+                if (realm == 0 || realm == advancingToRealm + 1)
                     vehicleRetainsAcceleCharger = true;
             }
 
