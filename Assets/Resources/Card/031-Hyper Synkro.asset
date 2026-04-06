@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 031-Hyper Synkro
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 31_hyper_synkro
+  cardName: Hyper Synkro
+  cardText: Already lean and mean, new carbon fiber body panels reduce Hyper SynKro's
+    weight even more. Get ready to rocket right through anything that gets in your
+    way.
+  effectIds: []
+  terrainIcons: 48
+  speed: 7
+  power: 4
+  performance: 4
+  team: 2
+  modabilityIcons: 3
