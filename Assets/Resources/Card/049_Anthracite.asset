@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 049_Anthracite
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 49_anthracite
+  cardName: Anthracite
+  cardText: This top-secret concept car features advanced fuel cell technology, giving
+    it a range far beyond that of a conventional vehicles.
+  effectIds: []
+  terrainIcons: 32
+  speed: 3
+  power: 4
+  performance: 4
+  team: 3
+  modabilityIcons: 2
