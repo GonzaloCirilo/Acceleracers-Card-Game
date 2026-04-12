@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 061-RD01
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 61_rd01
+  cardName: RD01
+  cardText: The simplest of Racing Drone designs, the RD01's compressed hydrogen
+    jet requires a computer controlled spoiler system and advanced positive traction
+    technology to keep the car stable and on track.
+  effectIds: []
+  terrainIcons: 0
+  speed: 4
+  power: 5
+  performance: 3
+  team: 4
+  modabilityIcons: 2
