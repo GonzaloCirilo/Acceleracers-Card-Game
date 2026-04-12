@@ -20,6 +20,10 @@ namespace AcceleracersCCG.Effects
         public const string TransferMod = "transfer_mod";
         public const string TransferModIgnoreModability = "transfer_mod_ignore_modability";
 
+        // Parameterized prefix — append ":N" where N is the increase amount.
+        // e.g. "increase_hand_size:1" = hand limit is MaxHandSize + 1 while this vehicle is in play.
+        public const string IncreaseHandSizePrefix = "increase_hand_size";
+
         // Parameterized prefix — append ":speed", ":power", or ":performance".
         // e.g. "recover_mod_with_spp:speed" = recover 1 mod from junk that has a Speed value.
         public const string RecoverModWithSPPPrefix = "recover_mod_with_spp";

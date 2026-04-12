@@ -34,7 +34,7 @@ namespace AcceleracersCCG.StateMachine.Phases
             var player = state.ActivePlayer;
             var playerIdx = state.ActivePlayerIndex;
 
-            if (player.Hand.IsOverMaxSize)
+            if (player.Hand.Count > player.EffectiveMaxHandSize)
             {
                 // Must discard — offer each card as a discard option
                 foreach (var card in player.Hand.Cards)
@@ -54,7 +54,7 @@ namespace AcceleracersCCG.StateMachine.Phases
         public GamePhaseId GetNextPhase(GameState state)
         {
             // If still over, stay in discard phase
-            if (state.ActivePlayer.Hand.IsOverMaxSize)
+            if (state.ActivePlayer.Hand.Count > state.ActivePlayer.EffectiveMaxHandSize)
                 return GamePhaseId.Discard;
 
             return GamePhaseId.EndTurn;

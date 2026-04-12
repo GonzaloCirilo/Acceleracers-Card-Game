@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AcceleracersCCG.Cards;
 using AcceleracersCCG.Components;
+using AcceleracersCCG.Effects;
 
 namespace AcceleracersCCG.Core
 {
@@ -42,6 +43,26 @@ namespace AcceleracersCCG.Core
             VehiclesFinished = vehiclesFinished;
             AP = ap;
             HasPlayedVehicleThisTurn = hasPlayedVehicle;
+        }
+
+        /// <summary>
+        /// Max hand size accounting for vehicle effects (e.g. Technetium's increase_hand_size:1).
+        /// </summary>
+        public int EffectiveMaxHandSize
+        {
+            get
+            {
+                int bonus = 0;
+                foreach (var stack in VehiclesInPlay)
+                {
+                    foreach (var effectId in stack.Vehicle.Data.EffectIds)
+                    {
+                        int val = EffectIds.ParseIntParam(effectId, EffectIds.IncreaseHandSizePrefix);
+                        if (val > 0) bonus += val;
+                    }
+                }
+                return Constants.MaxHandSize + bonus;
+            }
         }
 
         /// <summary>
