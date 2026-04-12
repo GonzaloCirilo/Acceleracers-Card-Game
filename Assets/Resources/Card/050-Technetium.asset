@@ -18,7 +18,7 @@ MonoBehaviour:
     stabilizer. As long as Technetium remains in play, you may keep up to 8 cards
     in your hand.
   effectIds:
-  - increase_hand_size:1
+  - max_hand_size:8
   terrainIcons: 0
   speed: 3
   power: 3

@@ -48,20 +48,24 @@ namespace AcceleracersCCG.Core
         /// <summary>
         /// Max hand size accounting for vehicle effects (e.g. Technetium's increase_hand_size:1).
         /// </summary>
+        /// <summary>
+        /// Max hand size accounting for vehicle effects (e.g. Technetium's max_hand_size:8).
+        /// When multiple vehicles have the effect, the highest value wins.
+        /// </summary>
         public int EffectiveMaxHandSize
         {
             get
             {
-                int bonus = 0;
+                int max = Constants.MaxHandSize;
                 foreach (var stack in VehiclesInPlay)
                 {
                     foreach (var effectId in stack.Vehicle.Data.EffectIds)
                     {
-                        int val = EffectIds.ParseIntParam(effectId, EffectIds.IncreaseHandSizePrefix);
-                        if (val > 0) bonus += val;
+                        int val = EffectIds.ParseIntParam(effectId, EffectIds.MaxHandSizePrefix);
+                        if (val > max) max = val;
                     }
                 }
-                return Constants.MaxHandSize + bonus;
+                return max;
             }
         }
 
