@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 053-Vectra Iridium
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 53_vectra_iridium
+  cardName: Vectra Iridium
+  cardText: In addition to its durable exo-frame, the Vectra Iridium's new supercharger
+    and boost dependant fuel regulator really pump up its performance.
+  effectIds: []
+  terrainIcons: 32
+  speed: 3
+  power: 4
+  performance: 6
+  team: 3
+  modabilityIcons: 1
