@@ -1,37 +1,35 @@
 using System.Linq;
-using AcceleracersCCG.Cards;
 using AcceleracersCCG.Core;
 
 namespace AcceleracersCCG.Commands.System
 {
     /// <summary>
-    /// Move a specific Mod card from a player's junk pile to their hand.
+    /// Move a specific card from a player's junk pile to their hand.
     /// </summary>
-    public class RecoverModFromJunkCommand : ICommand
+    public class RecoverCardFromJunkCommand : ICommand
     {
         public int PlayerIndex { get; }
-        public int ModUniqueId { get; }
+        public int CardUniqueId { get; }
 
-        public RecoverModFromJunkCommand(int playerIndex, int modUniqueId)
+        public RecoverCardFromJunkCommand(int playerIndex, int cardUniqueId)
         {
             PlayerIndex = playerIndex;
-            ModUniqueId = modUniqueId;
+            CardUniqueId = cardUniqueId;
         }
 
         public string Validate(GameState state)
         {
             var player = state.GetPlayer(PlayerIndex);
-            var card = player.JunkPile.Cards.FirstOrDefault(c => c.UniqueId == ModUniqueId);
+            var card = player.JunkPile.Cards.FirstOrDefault(c => c.UniqueId == CardUniqueId);
             if (card == null) return "Card not in junk pile.";
-            if (card.Data.CardType != CardType.Mod) return "Card is not a Mod.";
             return null;
         }
 
         public void Execute(GameState state)
         {
             var player = state.GetPlayer(PlayerIndex);
-            var card = player.JunkPile.Cards.FirstOrDefault(c => c.UniqueId == ModUniqueId);
-            player.JunkPile.Remove(ModUniqueId);
+            var card = player.JunkPile.Cards.FirstOrDefault(c => c.UniqueId == CardUniqueId);
+            player.JunkPile.Remove(CardUniqueId);
             player.Hand.Add(card);
         }
 

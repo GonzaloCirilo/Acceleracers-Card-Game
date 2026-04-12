@@ -18,7 +18,7 @@ MonoBehaviour:
     off the Ritcher Scale. When Hollowback is brought into play, return 1 Mod from
     your junk pile to your hand.
   effectIds:
-  - recover_mod_from_junk
+  - recover_card_from_junk:mod
   terrainIcons: 32
   speed: 3
   power: 3

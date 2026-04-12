@@ -17,7 +17,7 @@ MonoBehaviour:
   cardText: When Vectra Accelium is brought into play, salvage any 1 Mod from your
     junk pile and return it to your hand.
   effectIds:
-  - recover_mod_from_junk
+  - recover_card_from_junk:mod
   terrainIcons: 1
   speed: 2
   power: 3

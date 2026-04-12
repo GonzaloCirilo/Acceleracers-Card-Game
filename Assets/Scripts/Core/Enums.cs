@@ -71,9 +71,9 @@ namespace AcceleracersCCG.Core
 
     public enum ChoiceType
     {
-        RecoverModFromJunk,
         TransferModSelectMod,
         TransferModSelectTarget,
-        RecoverModsForAP
+        RecoverModsForAP,
+        RecoverCardFromJunk
     }
 }

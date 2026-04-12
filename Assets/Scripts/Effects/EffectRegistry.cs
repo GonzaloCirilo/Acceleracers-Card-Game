@@ -23,7 +23,6 @@ namespace AcceleracersCCG.Effects
             registry.Register("block_shift", new BlockEquipEffect());
             registry.Register("block_mod", new BlockEquipEffect());
             registry.Register("block_accelecharger", new BlockEquipEffect());
-            registry.Register("recover_mod_from_junk", new RecoverModFromJunkEffect());
             registry.Register("recover_mods_for_ap", new RecoverModsForAPEffect());
             return registry;
         }
@@ -58,6 +57,16 @@ namespace AcceleracersCCG.Effects
                 _effects[effectId] = effect; // cache for next lookup
                 return effect;
             }
+
+            var cardTypeParam = EffectIds.ParseStringParam(effectId, EffectIds.RecoverCardFromJunkPrefix);
+            if (cardTypeParam != null)
+            {
+                var cardType = RecoverCardFromJunkEffect.ParseCardType(cardTypeParam);
+                var effect = new RecoverCardFromJunkEffect(cardType);
+                _effects[effectId] = effect;
+                return effect;
+            }
+
             return null;
         }
 

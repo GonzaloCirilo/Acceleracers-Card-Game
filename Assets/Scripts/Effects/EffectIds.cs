@@ -15,7 +15,6 @@ namespace AcceleracersCCG.Effects
         public const string BlockMod = "block_mod";
         public const string BlockAcceleCharger = "block_accelecharger";
         public const string JunkAllRaceMods = "junk_all_race_mods";
-        public const string RecoverModFromJunk = "recover_mod_from_junk";
         public const string RecoverModsForAP = "recover_mods_for_ap";
         public const string TransferMod = "transfer_mod";
         public const string TransferModIgnoreModability = "transfer_mod_ignore_modability";
@@ -31,6 +30,10 @@ namespace AcceleracersCCG.Effects
 
         // Parameterized prefixes — append ":N" where N is 1-based realm number.
         // e.g. "retain_shifts_on_realm_advance:2" = retain shifts when advancing to 2nd realm.
+        // Parameterized prefix — append ":card_type" (e.g. "hazard", "mod", "shift").
+        // e.g. "recover_card_from_junk:hazard" = recover 1 hazard from junk on play.
+        public const string RecoverCardFromJunkPrefix = "recover_card_from_junk";
+
         public const string RetainShiftsOnRealmAdvancePrefix = "retain_shifts_on_realm_advance";
         public const string RetainAcceleChargerOnRealmAdvancePrefix = "retain_accelecharger_on_realm_advance";
 

@@ -18,7 +18,7 @@ MonoBehaviour:
     is brought into play, salvage 1 Mod from your junk pile and return it to your
     hand.
   effectIds:
-  - recover_mod_from_junk
+  - recover_card_from_junk:mod
   terrainIcons: 19
   speed: 3
   power: 3

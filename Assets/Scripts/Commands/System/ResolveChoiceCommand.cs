@@ -37,8 +37,8 @@ namespace AcceleracersCCG.Commands.System
 
             switch (choice.Type)
             {
-                case ChoiceType.RecoverModFromJunk:
-                    new RecoverModFromJunkCommand(choice.PlayerIndex, SelectedCardUniqueId).Execute(state);
+                case ChoiceType.RecoverCardFromJunk:
+                    new RecoverCardFromJunkCommand(choice.PlayerIndex, SelectedCardUniqueId).Execute(state);
                     break;
 
                 case ChoiceType.TransferModSelectMod:
