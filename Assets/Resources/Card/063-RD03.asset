@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 063-RD03
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 63_rd03
+  cardName: RD03
+  cardText: This mobile utility vehicle runs interference for the other Racing Drones.
+    When RD03 is brought into play, salvage 1 Hazard Card from your junk pile and
+    return it to your hand.
+  effectIds: []
+  terrainIcons: 8
+  speed: 3
+  power: 4
+  performance: 2
+  team: 4
+  modabilityIcons: 1
