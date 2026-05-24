@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 070-RD01.v2
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 70_rd01.v2
+  cardName: RD01.v2
+  cardText: Upgraded with a lighter titanium shell, the RD01.v2 is better, stronger
+    and faster than the .v1.
+  effectIds: []
+  terrainIcons: 0
+  speed: 4
+  power: 5
+  performance: 4
+  team: 4
+  modabilityIcons: 2
