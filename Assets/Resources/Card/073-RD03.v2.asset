@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
-  m_Name: 072-RD02.v2
+  m_Name: 073-RD03.v2
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
-  cardId: 72_rd02.v2
-  cardName: RD02.v2
-  cardText: Adding afterburners and advanced aerodynamics to the RD02's already sleek
-    design packs even more punch into the .v2.
-  effectIds: []
-  terrainIcons: 0
+  cardId: 73_rd03.v2
+  cardName: RD03.v2
+  cardText: Upgraded with a mag-level system, this car easily negotiates rough terrains.
+    When RD03.v2 is brought into play, salvage 2 Hazards Cards from your junk pilr
+    and return them to yout hand.
+  effectIds:
+  - recover_card_from_junk:hazard:2
+  terrainIcons: 10
   speed: 4
-  power: 7
-  performance: 4
+  power: 4
+  performance: 3
   team: 4
-  modabilityIcons: 2
+  modabilityIcons: 1
