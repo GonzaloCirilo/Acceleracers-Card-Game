@@ -61,8 +61,10 @@ namespace AcceleracersCCG.Effects
             var cardTypeParam = EffectIds.ParseStringParam(effectId, EffectIds.RecoverCardFromJunkPrefix);
             if (cardTypeParam != null)
             {
-                var cardType = RecoverCardFromJunkEffect.ParseCardType(cardTypeParam);
-                var effect = new RecoverCardFromJunkEffect(cardType);
+                var parts = cardTypeParam.Split(':');
+                var cardType = RecoverCardFromJunkEffect.ParseCardType(parts[0]);
+                int count = parts.Length > 1 && int.TryParse(parts[1], out int n) ? n : 1;
+                var effect = new RecoverCardFromJunkEffect(cardType, count);
                 _effects[effectId] = effect;
                 return effect;
             }

@@ -38,7 +38,7 @@ namespace AcceleracersCCG.Commands.System
             switch (choice.Type)
             {
                 case ChoiceType.RecoverCardFromJunk:
-                    new RecoverCardFromJunkCommand(choice.PlayerIndex, SelectedCardUniqueId).Execute(state);
+                    ResolveRecoverCardFromJunk(state, choice);
                     break;
 
                 case ChoiceType.TransferModSelectMod:
@@ -86,6 +86,27 @@ namespace AcceleracersCCG.Commands.System
                 auxCardUniqueId: SelectedCardUniqueId,
                 ignoreModability: choice.IgnoreModability
             );
+        }
+
+        private void ResolveRecoverCardFromJunk(GameState state, PendingChoice choice)
+        {
+            new RecoverCardFromJunkCommand(choice.PlayerIndex, SelectedCardUniqueId).Execute(state);
+
+            if (choice.RemainingCount <= 1) return;
+
+            var player = state.GetPlayer(choice.PlayerIndex);
+            var remaining = choice.Options
+                .Where(id => id != SelectedCardUniqueId && player.JunkPile.Cards.Any(c => c.UniqueId == id))
+                .ToList();
+
+            if (remaining.Count == 0) return;
+
+            state.PendingChoice = new PendingChoice(
+                ChoiceType.RecoverCardFromJunk,
+                choice.PlayerIndex,
+                choice.SourceCardUniqueId,
+                remaining,
+                remainingCount: choice.RemainingCount - 1);
         }
 
         private void ResolveRecoverModsForAP(GameState state, PendingChoice choice)

@@ -7,17 +7,19 @@ using AcceleracersCCG.Core;
 namespace AcceleracersCCG.Effects.Implementations
 {
     /// <summary>
-    /// Parameterized effect: recover 1 card of a specific type from junk pile.
-    /// Effect ID format: "recover_card_from_junk:card_type"
-    /// e.g. "recover_card_from_junk:hazard", "recover_card_from_junk:mod"
+    /// Parameterized effect: recover N cards of a specific type from junk pile.
+    /// Effect ID format: "recover_card_from_junk:card_type" (count=1)
+    ///                    "recover_card_from_junk:card_type:N" (count=N)
     /// </summary>
     public class RecoverCardFromJunkEffect : ICardEffect
     {
         private readonly CardType _cardType;
+        private readonly int _count;
 
-        public RecoverCardFromJunkEffect(CardType cardType)
+        public RecoverCardFromJunkEffect(CardType cardType, int count = 1)
         {
             _cardType = cardType;
+            _count = count;
         }
 
         public List<ICommand> Resolve(GameState state, CardEffectContext context)
@@ -34,11 +36,14 @@ namespace AcceleracersCCG.Effects.Implementations
             if (options.Count == 0)
                 return new List<ICommand>();
 
+            int remaining = System.Math.Min(_count, options.Count);
+
             var choice = new PendingChoice(
                 ChoiceType.RecoverCardFromJunk,
                 context.OwnerPlayerIndex,
                 context.SourceCard.UniqueId,
-                options);
+                options,
+                remainingCount: remaining);
 
             return new List<ICommand> { new SetPendingChoiceCommand(choice) };
         }

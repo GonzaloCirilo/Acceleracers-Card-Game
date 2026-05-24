@@ -29,8 +29,12 @@ namespace AcceleracersCCG.Core
         /// <summary>When true, modability rules are skipped (e.g. Torqued Rolling Thunder).</summary>
         public bool IgnoreModability { get; }
 
+        /// <summary>How many picks remain for multi-pick choices (default 1).</summary>
+        public int RemainingCount { get; }
+
         public PendingChoice(ChoiceType type, int playerIndex, int sourceCardUniqueId,
-            IReadOnlyList<int> options, int? auxCardUniqueId = null, bool ignoreModability = false)
+            IReadOnlyList<int> options, int? auxCardUniqueId = null, bool ignoreModability = false,
+            int remainingCount = 1)
         {
             Type = type;
             PlayerIndex = playerIndex;
@@ -38,11 +42,12 @@ namespace AcceleracersCCG.Core
             Options = options;
             AuxCardUniqueId = auxCardUniqueId;
             IgnoreModability = ignoreModability;
+            RemainingCount = remainingCount;
         }
 
         public PendingChoice Clone()
         {
-            return new PendingChoice(Type, PlayerIndex, SourceCardUniqueId, new List<int>(Options), AuxCardUniqueId, IgnoreModability);
+            return new PendingChoice(Type, PlayerIndex, SourceCardUniqueId, new List<int>(Options), AuxCardUniqueId, IgnoreModability, RemainingCount);
         }
     }
 }
