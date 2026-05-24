@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
-  m_Name: 070-RD01.v2
+  m_Name: 071-RD01.v2
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
-  cardId: 70_rd01.v2
+  cardId: 71_rd01.v2
   cardName: RD01.v2
   cardText: Upgraded with a lighter titanium shell, the RD01.v2 is better, stronger
     and faster than the .v1.
