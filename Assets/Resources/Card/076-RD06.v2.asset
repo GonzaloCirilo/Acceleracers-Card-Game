@@ -17,7 +17,7 @@ MonoBehaviour:
   cardText: Sporting four compressed hydrogen jets, the RD06.v2 is more of a missile
     than a vehicle.
   effectIds: []
-  terrainIcons: 36
+  terrainIcons: 48
   speed: 3
   power: 6
   performance: 4
