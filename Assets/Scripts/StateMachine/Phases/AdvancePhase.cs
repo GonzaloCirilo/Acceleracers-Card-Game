@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using AcceleracersCCG.Cards;
 using AcceleracersCCG.Commands;
 using AcceleracersCCG.Commands.System;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Effects;
 using AcceleracersCCG.Rules;
 
 namespace AcceleracersCCG.StateMachine.Phases
@@ -33,20 +35,55 @@ namespace AcceleracersCCG.StateMachine.Phases
             {
                 if (stack.HasFinished) continue;
 
-                if (AdvanceRules.CanAdvance(stack, state.RealmTrack))
+                // Mods that force an auto-advance this turn (e.g. Strato-Thruster) and
+                // haven't fired yet. They advance the vehicle even if it can't escape.
+                var autoAdvanceMods = new List<CardInstance>();
+                foreach (var mod in stack.EquippedMods)
                 {
-                    // Strip temporaries before advancing
-                    commands.Add(new StripTemporariesCommand(playerIdx, stack.Vehicle.UniqueId));
-
-                    // Advance to next realm
-                    commands.Add(new AdvanceVehicleCommand(playerIdx, stack.Vehicle.UniqueId));
-
-                    // Reveal next realm if needed
-                    int nextRealmIdx = stack.RealmIndex + 1; // +1 because advance hasn't executed yet
-                    if (nextRealmIdx < Constants.RealmsPerRace
-                        && !state.RealmTrack.IsRevealed(nextRealmIdx))
+                    if (mod.Data.HasEffect(EffectIds.AutoAdvanceNextTurn)
+                        && !stack.Tokens.Has($"{EffectIds.AutoAdvanceFiredTokenPrefix}_{mod.UniqueId}"))
                     {
-                        commands.Add(new FlipRealmCommand(nextRealmIdx));
+                        autoAdvanceMods.Add(mod);
+                    }
+                }
+
+                bool canAdvance = AdvanceRules.CanAdvance(stack, state.RealmTrack);
+                if (!canAdvance && autoAdvanceMods.Count == 0)
+                    continue;
+
+                int fromRealmIdx = stack.RealmIndex;
+
+                // Strip temporaries (Shifts / AcceleCharger) before advancing, as normal.
+                commands.Add(new StripTemporariesCommand(playerIdx, stack.Vehicle.UniqueId));
+
+                // Advance to next realm.
+                commands.Add(new AdvanceVehicleCommand(playerIdx, stack.Vehicle.UniqueId));
+
+                // Reveal next realm if needed (advance hasn't executed yet, so use fromRealmIdx + 1).
+                int nextRealmIdx = fromRealmIdx + 1;
+                if (nextRealmIdx < Constants.RealmsPerRace
+                    && !state.RealmTrack.IsRevealed(nextRealmIdx))
+                {
+                    commands.Add(new FlipRealmCommand(nextRealmIdx));
+                }
+
+                // Resolve auto-advance mods: their own text junks them, unless the vehicle
+                // or the Realm being left retains Mods (Junk Realm), in which case they stay
+                // but are flagged so they don't advance the vehicle again next turn.
+                if (autoAdvanceMods.Count > 0)
+                {
+                    bool retained = AdvanceRules.RetainsMods(stack, state.RealmTrack, fromRealmIdx);
+                    foreach (var mod in autoAdvanceMods)
+                    {
+                        if (retained)
+                        {
+                            commands.Add(new SetTokenCommand(playerIdx, stack.Vehicle.UniqueId,
+                                $"{EffectIds.AutoAdvanceFiredTokenPrefix}_{mod.UniqueId}", 1));
+                        }
+                        else
+                        {
+                            commands.Add(new JunkCardCommand(playerIdx, stack.Vehicle.UniqueId, mod.UniqueId));
+                        }
                     }
                 }
             }

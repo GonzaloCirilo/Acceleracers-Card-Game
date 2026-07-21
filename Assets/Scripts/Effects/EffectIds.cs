@@ -16,6 +16,18 @@ namespace AcceleracersCCG.Effects
         public const string BlockAcceleCharger = "block_accelecharger";
         public const string JunkAllRaceMods = "junk_all_race_mods";
         public const string RecoverModsForAP = "recover_mods_for_ap";
+
+        // Mod that auto-advances its vehicle to the next Realm at the start of the owner's
+        // next turn (ignoring escape value), then junks itself. Enforced in AdvancePhase.
+        public const string AutoAdvanceNextTurn = "auto_advance_next_turn";
+
+        // Realm/vehicle effect: equipped Mods are kept (not junked) when a vehicle advances
+        // from this Realm — overrides a Mod's own self-junk-on-advance (e.g. Strato-Thruster).
+        public const string RetainModsOnAdvance = "retain_mods_on_advance";
+
+        // Per-mod stack token marking that an auto-advance mod has already fired (so a mod
+        // retained by RetainModsOnAdvance does not re-trigger). Append ":{modUniqueId}".
+        public const string AutoAdvanceFiredTokenPrefix = "auto_advance_fired";
         public const string TransferMod = "transfer_mod";
         public const string TransferModIgnoreModability = "transfer_mod_ignore_modability";
 

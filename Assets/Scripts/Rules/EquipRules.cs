@@ -62,6 +62,9 @@ namespace AcceleracersCCG.Rules
                 var realm = realmTrack.GetRealm(stack.RealmIndex);
                 if (realm?.Data.HasEffect(EffectIds.BlockMod) == true)
                     return "Mods cannot be equipped to vehicles in this Realm.";
+                // Junk Realm: modability rules do not apply — ANY Mod on ANY Vehicle.
+                if (realm?.Data.HasEffect(EffectIds.IgnoreModability) == true)
+                    return null;
             }
 
             return ModabilityRules.ValidateModEquip(mod, stack.Vehicle.Data);

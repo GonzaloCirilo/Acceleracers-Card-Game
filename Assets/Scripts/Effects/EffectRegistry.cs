@@ -24,6 +24,8 @@ namespace AcceleracersCCG.Effects
             registry.Register("block_mod", new BlockEquipEffect());
             registry.Register("block_accelecharger", new BlockEquipEffect());
             registry.Register("recover_mods_for_ap", new RecoverModsForAPEffect());
+            registry.Register(EffectIds.AutoAdvanceNextTurn, new PassiveMarkerEffect());
+            registry.Register(EffectIds.RetainModsOnAdvance, new PassiveMarkerEffect());
             return registry;
         }
 

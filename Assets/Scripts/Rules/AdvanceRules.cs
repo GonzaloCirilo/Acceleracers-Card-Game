@@ -1,6 +1,7 @@
 using AcceleracersCCG.Cards;
 using AcceleracersCCG.Components;
 using AcceleracersCCG.Core;
+using AcceleracersCCG.Effects;
 
 namespace AcceleracersCCG.Rules
 {
@@ -9,6 +10,26 @@ namespace AcceleracersCCG.Rules
     /// </summary>
     public static class AdvanceRules
     {
+        /// <summary>
+        /// True if equipped Mods should be kept (not junked) when this vehicle advances
+        /// out of <paramref name="fromRealmIndex"/> — because the vehicle itself, or the
+        /// Realm it is leaving, has the RetainModsOnAdvance effect (e.g. the Junk Realm).
+        /// </summary>
+        public static bool RetainsMods(VehicleStack stack, RealmTrack realmTrack, int fromRealmIndex)
+        {
+            if (stack.Vehicle.Data.HasEffect(EffectIds.RetainModsOnAdvance))
+                return true;
+
+            if (realmTrack != null && fromRealmIndex >= 0 && fromRealmIndex < Constants.RealmsPerRace)
+            {
+                var realm = realmTrack.GetRealm(fromRealmIndex);
+                if (realm?.Data.HasEffect(EffectIds.RetainModsOnAdvance) == true)
+                    return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Checks if a vehicle stack can advance past its current realm.
         /// The stack's total SPP in the realm's escape category must meet or exceed the escape value.
