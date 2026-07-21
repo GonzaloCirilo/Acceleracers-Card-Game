@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 80-RD10.v2
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 80_rd10.v2
+  cardName: RD10.v2
+  cardText: Tuned to the extreme, the RD10.v2 uses specially modified spoilers and
+    unknown stabilization technology to keep it grounded at the highest of speeds.
+  effectIds: []
+  terrainIcons: 16
+  speed: 4
+  power: 5
+  performance: 3
+  team: 4
+  modabilityIcons: 2
