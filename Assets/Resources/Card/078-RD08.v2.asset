@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
+  m_Name: 078-RD08.v2
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
+  cardId: 78_rd08.v2
+  cardName: RD08.v2
+  cardText: Now equipped with a tough carbon composite chassis, this vehicle is even
+    more upgradeable than the RD08.v1.
+  effectIds: []
+  terrainIcons: 4
+  speed: 3
+  power: 5
+  performance: 3
+  team: 4
+  modabilityIcons: 1
