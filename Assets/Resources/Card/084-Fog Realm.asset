@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5aa3fcc52f384970aebad549a3aca2d, type: 3}
+  m_Name: 084-Fog Realm
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.RacingRealmDataSO
+  cardId: 84_fog_realm
+  cardName: Fog Realm
+  cardText: A thick Fog hides gigantic obstacles and treacherous switchbacks that
+    twist drivers into each other. No new Shift cards can be equipped to any Vehicle
+    in this realm.
+  effectIds:
+  - block_shift
+  terrainIcons: 8
+  escapeValue: 7
+  escapeCategory: 2
