@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43fcb41e350cf44e4a7ac3897a98436f, type: 3}
-  m_Name: 80-RD10.v2
+  m_Name: 080-RD10.v2
   m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.VehicleDataSO
   cardId: 80_rd10.v2
   cardName: RD10.v2
