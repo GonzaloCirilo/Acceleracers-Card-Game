@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5aa3fcc52f384970aebad549a3aca2d, type: 3}
+  m_Name: 089-Cavern Realm
+  m_EditorClassIdentifier: Assembly-CSharp::AcceleracersCCG.Cards.Data.RacingRealmDataSO
+  cardId: 89_cavern_realm
+  cardName: Cavern Realm
+  cardText: Glowing geodes and strange fungi light this convoluted underground track,
+    where vicious creatures lie in wait for any metal snacks that happen to drive
+    past.
+  effectIds: []
+  terrainIcons: 2
+  escapeValue: 7
+  escapeCategory: 0
